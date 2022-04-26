@@ -16,10 +16,13 @@ export class TableComponent implements AfterViewInit {
   dataSource: TableDataSource;
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['id', 'name'];
+  displayedColumns = ['inicio', 'tipo', 'titulo', 'previsao', 'task', 'incidente'];
 
   constructor() {
     this.dataSource = new TableDataSource();
+    for(let data in this.dataSource){
+      console.log(data);
+    }
   }
 
   ngAfterViewInit(): void {

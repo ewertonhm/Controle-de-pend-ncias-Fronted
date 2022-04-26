@@ -95,6 +95,7 @@
               "src/assets"
             ],
             "styles": [
+              "https://fonts.googleapis.com/icon?family=Material+Icons",
               "src/styles.css"
             ],
             "scripts": []
