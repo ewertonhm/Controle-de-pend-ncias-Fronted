@@ -7,7 +7,9 @@ session_start();
 if(!isset($_SESSION['logado']) OR $_SESSION['logado'] != true){
     header('location: login.php');
 }else{
-    $vars = ['usuario' => $_SESSION['nome']];
+    if(!$_SESSION['usuario']->refresh_token()){
+        header('location: login.php');
+    }
 }
 
 $template = $twig->load('index.twig');
