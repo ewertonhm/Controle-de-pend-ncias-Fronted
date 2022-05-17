@@ -12,8 +12,6 @@ if(!isset($_SESSION['logado']) OR $_SESSION['logado'] != true){
     }
 }
 
-dump($_SESSION);
-
 $template = $twig->load('index.twig');
 
 echo $template->render($vars);

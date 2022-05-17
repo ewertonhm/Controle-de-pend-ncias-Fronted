@@ -15,7 +15,10 @@ if(!$api->check_status()){
 
     
 
-$vars = [];
+$vars = [
+    'no_navbar'=>true,
+    'page_name'=>'Login'
+];
 
 if(isset($_POST['btn-login'])){
     $user = new \Controller\Usuario();

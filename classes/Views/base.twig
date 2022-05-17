@@ -16,9 +16,11 @@
     <script src="vendor/twbs/bootstrap/dist/js/bootstrap.js"></script>
     {% endblock %}
 </head>
-<body>
+<body style="background-color:#212529">
 {% block navbar %}
-    {% include 'navbar.html' %}
+    {% if not no_navbar %}
+        {% include 'navbar.html' %}
+    {% endif %}
 {% endblock %}
 
 {% block content %}
