@@ -12,12 +12,13 @@
         {% endif %}
         Pendencias
     </title>
-    <!-- css here -->
+    <link href="vendor/twbs/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+    <script src="vendor/twbs/bootstrap/dist/js/bootstrap.js"></script>
     {% endblock %}
 </head>
 <body>
 {% block navbar %}
-    <nav></nav>
+    {% include 'navbar.html' %}
 {% endblock %}
 
 {% block content %}

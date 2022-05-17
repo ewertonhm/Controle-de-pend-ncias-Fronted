@@ -21,7 +21,7 @@ class Usuario
         );
 
         $token = $this->api->CallAPI_Unauthorized("POST","/users/login",$data);
-        if(\property_exists($token, "data")){
+        if(is_object($token) && \property_exists($token, "data")){
             if(\property_exists($token->data, "acess_token")){
                 $this->token = $token->data->acess_token;
                 return true;
@@ -36,7 +36,7 @@ class Usuario
         );
         $token = $this->api->CallAPI_Unauthorized("PUT","/token/refresh",$data);
         
-        if(\property_exists($token, "data")){
+        if(is_object($token) && \property_exists($token, "data")){
             if(\property_exists($token->data, "acess_token")){
                 $this->token = $token->data->acess_token;
                 return true;

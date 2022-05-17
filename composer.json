@@ -5,7 +5,8 @@
     "require": {
         "filp/whoops": "^2.14",
         "twig/twig": "^3.4",
-        "nesbot/carbon": "^2.58"
+        "nesbot/carbon": "^2.58",
+        "twbs/bootstrap": "5.2.0-beta1"
     },
     "require-dev": {
         "symfony/var-dumper": "^5.4"

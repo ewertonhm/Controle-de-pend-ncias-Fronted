@@ -10,6 +10,15 @@ class Api
         $this->base_url = "http://192.168.65.145:3001/api/v1";
     }
 
+    public function check_status()
+    {
+        $status = $this->CallAPI_Unauthorized('GET','/users/login');
+        if(\is_object($status) && property_exists($status,"statusCode")){
+            return true;
+        }
+        return false;
+    }
+
     function CallAPI_Unauthorized($method, $url, $data = false)
     {
         $url = $this->base_url . $url;

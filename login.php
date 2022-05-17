@@ -1,11 +1,19 @@
 <?php
 require_once 'config.php';
-session_start();
 
+session_start();
 
 if(isset($_SESSION['logado']) AND $_SESSION['logado'] == true){
     header('location: index.php');
 }
+
+// check server status
+$api = new \Controller\Api();
+if(!$api->check_status()){
+    echo "could not connect to backend server";
+}
+
+    
 
 $vars = [];
 

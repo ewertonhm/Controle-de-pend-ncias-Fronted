@@ -5,7 +5,7 @@
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => '395b11548a69b0ed7056140fdba3ffd80c656de0',
+        'reference' => '5e83bf54e9c74b4ed6e603cb93b78326a487b71b',
         'name' => '__root__',
         'dev' => true,
     ),
@@ -16,7 +16,7 @@
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => '395b11548a69b0ed7056140fdba3ffd80c656de0',
+            'reference' => '5e83bf54e9c74b4ed6e603cb93b78326a487b71b',
             'dev_requirement' => false,
         ),
         'filp/whoops' => array(
@@ -115,6 +115,15 @@
             'reference' => 'cdcadd343d31ad16fc5e006b0de81ea307435053',
             'dev_requirement' => true,
         ),
+        'twbs/bootstrap' => array(
+            'pretty_version' => 'v5.2.0-beta1',
+            'version' => '5.2.0.0-beta1',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../twbs/bootstrap',
+            'aliases' => array(),
+            'reference' => 'fca04c07131a81e625a516cf7b98a8c7df0df1c1',
+            'dev_requirement' => false,
+        ),
         'twig/twig' => array(
             'pretty_version' => 'v3.4.1',
             'version' => '3.4.1.0',
@@ -123,6 +132,12 @@
             'aliases' => array(),
             'reference' => 'e939eae92386b69b49cfa4599dd9bead6bf4a342',
             'dev_requirement' => false,
+        ),
+        'twitter/bootstrap' => array(
+            'dev_requirement' => false,
+            'replaced' => array(
+                0 => 'v5.2.0-beta1',
+            ),
         ),
     ),
 );
