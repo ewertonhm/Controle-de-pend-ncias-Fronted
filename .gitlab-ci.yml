@@ -8,7 +8,7 @@ copy-job:
         - tio-mon-extension
     script:
     - echo "Copying the code..."
-    - cp * /var/www/pendencias/
+    - cp -r * /var/www/pendencias/
     - echo "Copy complete."
 
 config-permissions-job:   
