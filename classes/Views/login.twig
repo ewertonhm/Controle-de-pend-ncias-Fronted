@@ -1,0 +1,28 @@
+{% extends "base.twig" %}
+
+{% block content %}
+
+<h3>Sistema de pendências do monitoramento!</h3>
+<form method="post" action="login.php">
+    <div>
+        <div>
+            <span></span>
+            <input type="text" name="login">
+        </div>
+    </div>
+    <div>
+        <div>
+            <span></span>
+            <input type="password" name="senha">
+        </div>
+    </div>
+    {% if senha %}
+        <div>
+            Usuário ou senha incorreto! <br>
+        </div>
+    {% endif %}
+    <div>
+        <button type="submit" name="btn-login">Login</button>
+    </div>
+</form>
+{% endblock %}

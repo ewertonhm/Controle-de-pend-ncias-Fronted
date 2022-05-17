@@ -1,0 +1,13 @@
+{
+  "autoload": {
+    "classmap": ["classes/"]
+  },
+  "require": {
+    "filp/whoops": "^2.14",
+    "twig/twig": "^3.0",
+    "nesbot/carbon": "^2.58"
+  },
+  "require-dev": {
+    "symfony/var-dumper": "^6.0"
+  }
+}
