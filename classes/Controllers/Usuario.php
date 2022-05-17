@@ -45,7 +45,7 @@ class Usuario
         return false;
     }
 
-    public static function getNameById($id){
+    public function getMe(){
         
     }
 
