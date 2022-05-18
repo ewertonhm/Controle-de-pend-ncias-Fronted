@@ -90,6 +90,7 @@ class ComposerStaticInit575308c50dffcaaa96e01d56272aad36
         'Attribute' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
         'Controller\\Api' => __DIR__ . '/../..' . '/classes/Controllers/Api.php',
+        'Controller\\Pendencia' => __DIR__ . '/../..' . '/classes/Controllers/Pendencia.php',
         'Controller\\Usuario' => __DIR__ . '/../..' . '/classes/Controllers/Usuario.php',
         'PhpToken' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/PhpToken.php',
         'Stringable' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Stringable.php',

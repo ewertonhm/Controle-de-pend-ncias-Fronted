@@ -5,7 +5,7 @@ namespace Controller;
 class Usuario
 {
     private $api;
-    private $token;
+    public $token;
 
     public function __construct(){
         $this->api = new Api();

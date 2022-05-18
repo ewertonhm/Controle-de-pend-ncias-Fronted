@@ -10,10 +10,8 @@ if(isset($_SESSION['logado']) AND $_SESSION['logado'] == true){
 // check server status
 $api = new \Controller\Api();
 if(!$api->check_status()){
-    echo "could not connect to backend server";
+    echo "<p style='color: #ff0000; background-color: #ffffff'>could not connect to backend server!</p>";
 }
-
-    
 
 $vars = [
     'no_navbar'=>true,
@@ -28,7 +26,7 @@ if(isset($_POST['btn-login'])){
         $_SESSION['logado'] = true;
         header('location: login.php');
     } else {
-        $vars = ['senha'=>'incorreta'];
+        $vars['senha']='incorreta';
     }
 }
 
