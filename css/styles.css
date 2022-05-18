@@ -1,0 +1,5 @@
+:root {
+   --bs-body-font-size:0.82rem;
+   --bs-body-font-family: var(--bs-font-monospace);
+   --bs-body-line-height: 1;
+}
