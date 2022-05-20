@@ -1,3 +1,13 @@
+const el = document.getElementById('hoverable');
+const hiddenDiv = document.getElementById('show');
 
-const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]')
-const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl))
+
+el.addEventListener('mouseover', function handleMouseOver() {
+  hiddenDiv.style.display = 'block';
+
+});
+
+el.addEventListener('mouseout', function handleMouseOut() {
+  hiddenDiv.style.display = 'none';
+
+});

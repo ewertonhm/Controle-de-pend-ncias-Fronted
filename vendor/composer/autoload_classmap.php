@@ -8,6 +8,7 @@ $baseDir = dirname($vendorDir);
 return array(
     'Attribute' => $vendorDir . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',
     'Composer\\InstalledVersions' => $vendorDir . '/composer/InstalledVersions.php',
+    'Controller\\Andamento' => $baseDir . '/classes/Controllers/Andamento.php',
     'Controller\\Api' => $baseDir . '/classes/Controllers/Api.php',
     'Controller\\Date' => $baseDir . '/classes/Controllers/Date.php',
     'Controller\\Pendencia' => $baseDir . '/classes/Controllers/Pendencia.php',

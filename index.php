@@ -1,7 +1,5 @@
 <?php
 
-
-
 require 'config.php';
 
 $vars = ['page_name' => 'Index'];
@@ -28,10 +26,14 @@ if (!isset($_SESSION['logado']) or $_SESSION['logado'] != true) {
                     $pendencia->{'atrasado'} = true;
                 }
                 $pendencia->previsao = Controller\Date::convertFromJsToHuman($pendencia->previsao);
+                $andamento = new Controller\Andamento($_SESSION['usuario']->token);
+                $pendencia->{'andamentos'} = $andamento->get_all($pendencia->id);
             }
         }
 
         $vars['pendencias'] = $p;
+
+        dump($vars);
 
         $template = $twig->load('index.twig');
 

@@ -89,6 +89,7 @@ class ComposerStaticInit575308c50dffcaaa96e01d56272aad36
     public static $classMap = array (
         'Attribute' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
+        'Controller\\Andamento' => __DIR__ . '/../..' . '/classes/Controllers/Andamento.php',
         'Controller\\Api' => __DIR__ . '/../..' . '/classes/Controllers/Api.php',
         'Controller\\Date' => __DIR__ . '/../..' . '/classes/Controllers/Date.php',
         'Controller\\Pendencia' => __DIR__ . '/../..' . '/classes/Controllers/Pendencia.php',
