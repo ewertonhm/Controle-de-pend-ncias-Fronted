@@ -17,4 +17,12 @@ class Date
     {
         return Carbon::createFromTimestampMsUTC($date)->format('Y-m-d\TH:i:s.uP'); // 1970-01-01T00:00:00.001000+00:00
     }
+
+    public static function checkIfIsAtrasado($date)
+    {
+        $now = Carbon::now();
+        $date = Carbon::createFromFormat('Y-m-d\TH:i:s.uP', $date);
+
+        return $date->lessThan($now);
+    }
 }

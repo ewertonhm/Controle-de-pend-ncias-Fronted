@@ -23,14 +23,15 @@ if (!isset($_SESSION['logado']) or $_SESSION['logado'] != true) {
                 $pendencia->inicio = Controller\Date::convertFromJsToHuman($pendencia->inicio);
             }
             if ($pendencia->previsao != null) {
+                $isAtrasado = Controller\Date::checkIfIsAtrasado($pendencia->previsao);
+                if ($isAtrasado) {
+                    $pendencia->{'atrasado'} = true;
+                }
                 $pendencia->previsao = Controller\Date::convertFromJsToHuman($pendencia->previsao);
             }
         }
 
         $vars['pendencias'] = $p;
-
-        #dump($vars);
-
 
         $template = $twig->load('index.twig');
 

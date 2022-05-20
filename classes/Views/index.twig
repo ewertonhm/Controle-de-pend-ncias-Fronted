@@ -20,7 +20,12 @@
             <td>{{ pendencia.inicio }}</td>
             <td>{{ pendencia.titulo }}</td>
             <td>{{ pendencia.tipoPendencia.tipo }}</td>
-            <td>{{ pendencia.previsao }}</td>
+            <td>
+                {{ pendencia.previsao }} 
+                {% if pendencia.atrasado %}
+                    <span class="badge text-bg-danger">Atrasado</span>
+                {% endif %}
+            </td>
             <td>{{ pendencia.responsavel }}</td>
             <td>   
                 {% if pendencia.task %}
@@ -33,9 +38,9 @@
                 {% endif %}
             </td>
             <td>
-                <i class="bi bi-chat-left-text"></i>
-                <i class="bi bi-pencil-square"></i>
-                <i class="bi bi-check2-square"></i>
+                <i class="bi bi-chat-left-text" rel="tooltip" title="Andamentos"></i>
+                <i class="bi bi-pencil-square" rel="tooltip" title="Editar pendência"></i>
+                <i class="bi bi-check2-square" rel="tooltip" title="Concluir pendência"></i>
             </td>
             </tr>
         {% endfor %}
