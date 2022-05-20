@@ -4,14 +4,14 @@
     <table class="table table-dark table-striped">
     <thead>
         <tr>
-        <th scope="col">Data</th>
+        <th scope="col">Inicio</th>
         <th scope="col">Titulo</th>
         <th scope="col">Tipo</th>
         <th scope="col">Previsão</th>
         <th scope="col">Responsável</th>
         <th scope="col">Task</th> <!-- botão -->
         <th scope="col">Incidente</th> <!-- botão -->
-        <th scope="col">Andamento</th> <!-- hover text (last) / on click (add) -->
+        <th scope="col"></th> <!-- hover text (last) / on click (add) -->
         </tr>
     </thead>
     <tbody>
@@ -21,13 +21,22 @@
             <td>{{ pendencia.titulo }}</td>
             <td>{{ pendencia.tipoPendencia.tipo }}</td>
             <td>{{ pendencia.previsao }}</td>
-            <td>"Responsável"</td>
-            <td><button type="button" href="{{ pendencia.task }}" class="btn btn-primary btn-xs">
-                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span> Task
-                </button>
+            <td>{{ pendencia.responsavel }}</td>
+            <td>   
+                {% if pendencia.task %}
+                    <a href="{{ pendencia.task }}">task</a>
+                {% endif %}
             </td>
-            <td>{{ pendencia.Incidente }}</td>
-            <td>"Andamento"</td>
+            <td>
+                {% if pendencia.incidente %}
+                    <a href="{{ pendencia.incidente }}">incidente</a>
+                {% endif %}
+            </td>
+            <td>
+                <i class="bi bi-chat-left-text"></i>
+                <i class="bi bi-pencil-square"></i>
+                <i class="bi bi-check2-square"></i>
+            </td>
             </tr>
         {% endfor %}
     </tbody>

@@ -16,6 +16,8 @@
     <link href="css/styles.css" rel="stylesheet">
 
     <script src="vendor/twbs/bootstrap/dist/js/bootstrap.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+
     {% endblock %}
 </head>
 <body style="background-color:#212529">
@@ -25,9 +27,11 @@
     {% endif %}
 {% endblock %}
 
+<div class="container-fluid">
 {% block content %}
 
 {% endblock %}
+</div>
 
 {% block scripts %}
 
