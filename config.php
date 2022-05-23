@@ -11,12 +11,10 @@ $whoops->register();
 $loader = new \Twig\Loader\FilesystemLoader('classes/Views');
 $twig = new \Twig\Environment($loader, [
     //'cache' => 'classes/TwigTemplates/compilation_cache', //descomentar após o desenvolvimento
-    //'debug' => true, //comentar após o desenvolvimento
+    'debug' => true, //comentar após o desenvolvimento
 ]);
 // comentar após o desenvolvimento
 $twig->addExtension(new \Twig\Extension\DebugExtension());
 // dump exemplo:
 //{{ dump() }}
 //{{ dump(user, categories) }}
-
-?>
