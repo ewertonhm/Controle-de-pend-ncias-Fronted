@@ -39,9 +39,15 @@
                 </td>
                 <td>
                     <div>
-                        <i class="bi bi-chat-left-text" id="{{pendencia.id}}" rel="tooltip"  title="Andamentos"></i>
-                        <i class="bi bi-pencil-square" rel="tooltip" title="Editar pendência"></i>
-                        <i class="bi bi-check2-square" rel="tooltip" title="Concluir pendência"></i>
+                        <a data-bs-toggle="modal" data-bs-target="#addAndamento" data-bs-pendencia-id="{{pendencia.id}}">
+                            <i class="bi bi-chat-left-text" id="{{pendencia.id}}" rel="tooltip"  title="Andamentos"></i>
+                        </a>
+                        <a data-bs-toggle="modal" data-bs-target="#editPendencia" data-bs-pendencia-id="{{pendencia.id}}">
+                            <i class="bi bi-pencil-square" rel="tooltip" title="Editar pendência"></i>
+                        </a>
+                        <a data-bs-toggle="modal" data-bs-target="#fecharPendencia" data-bs-pendencia-id="{{pendencia.id}}">
+                            <i class="bi bi-check2-square" rel="tooltip" title="Concluir pendência"></i>
+                        </a>
                         {% if pendencia.andamentos|length > 0 %}
                             <div id="{{pendencia.id}}_hidden" class="container-sm content__block">
                                 <table class="table table-sm table-responsive-sm table-dark table-striped">
@@ -55,7 +61,7 @@
                                     <tbody>
                                         {% for andamento in pendencia.andamentos %}
                                         <tr>
-                                            <td>{{ andamento.created_at }}</td>
+                                            <td>{{ andamento.hora }}</td>
                                             <td>{{ andamento.user.email }}</td>
                                             <td>{{ andamento.andamento }}</td>
                                         <tr>
@@ -76,25 +82,209 @@
 {% endblock %}
 
 {% block scripts %}
-<script>
-    {% for pendencia in pendencias %}
-        {% if pendencia.andamentos|length > 0 %}
+    <script>
+        // script to show andamentos table on mouse over
+        {% for pendencia in pendencias %}
+            {% if pendencia.andamentos|length > 0 %}
 
-            let el{{ pendencia.id|replace({"-": ""}) }} = document.getElementById('{{ pendencia.id }}');
-            let hiddenDiv{{ pendencia.id|replace({"-": ""}) }}  = document.getElementById('{{ pendencia.id }}_hidden');
+                let el{{ pendencia.id|replace({"-": ""}) }} = document.getElementById('{{ pendencia.id }}');
+                let hiddenDiv{{ pendencia.id|replace({"-": ""}) }}  = document.getElementById('{{ pendencia.id }}_hidden');
 
 
 
-            el{{ pendencia.id|replace({"-": ""}) }}.addEventListener('mouseover', function handleMouseOver() {
-            hiddenDiv{{ pendencia.id|replace({"-": ""}) }}.style.display = 'block';
+                el{{ pendencia.id|replace({"-": ""}) }}.addEventListener('mouseover', function handleMouseOver() {
+                hiddenDiv{{ pendencia.id|replace({"-": ""}) }}.style.display = 'block';
 
-            });
+                });
 
-            el{{ pendencia.id|replace({"-": ""}) }}.addEventListener('mouseout', function handleMouseOut() {
-            hiddenDiv{{ pendencia.id|replace({"-": ""}) }}.style.display = 'none';
+                el{{ pendencia.id|replace({"-": ""}) }}.addEventListener('mouseout', function handleMouseOut() {
+                hiddenDiv{{ pendencia.id|replace({"-": ""}) }}.style.display = 'none';
 
-            });
-        {% endif %}
-    {% endfor %}
-</script>
+                });
+            {% endif %}
+
+
+            // script for addandamento modal
+            const addAndamentoModal{{ pendencia.id|replace({"-": ""}) }} = document.getElementById('addAndamento')
+            addAndamentoModal{{ pendencia.id|replace({"-": ""}) }}.addEventListener('show.bs.modal', event => {
+            // Button that triggered the modal
+            const addAndamentoButton{{ pendencia.id|replace({"-": ""}) }} = event.relatedTarget
+            // Extract info from data-bs-* attributes
+            const addAndamentoId{{ pendencia.id|replace({"-": ""}) }} = addAndamentoButton{{ pendencia.id|replace({"-": ""}) }}.getAttribute('data-bs-pendencia-id')
+            // If necessary, you could initiate an AJAX request here
+            // and then do the updating in a callback.
+            //
+            // Update the modal's content.
+            //const modalTitle = exampleModal.querySelector('.modal-title')
+            const addAndamentoModalBodyInput{{ pendencia.id|replace({"-": ""}) }} = addAndamentoModal{{ pendencia.id|replace({"-": ""}) }}.querySelector('#idPendenciaOnAddPendencia')
+
+            //modalTitle.textContent = `New message to ${recipient}`
+            addAndamentoModalBodyInput{{ pendencia.id|replace({"-": ""}) }}.value = addAndamentoId{{ pendencia.id|replace({"-": ""}) }}
+            })
+
+            // script for editarpendencia modal
+            const editPendenciaModal{{ pendencia.id|replace({"-": ""}) }} = document.getElementById('editPendencia')
+            editPendenciaModal{{ pendencia.id|replace({"-": ""}) }}.addEventListener('show.bs.modal', event => {
+            // Button that triggered the modal
+            const editPendneciaButton{{ pendencia.id|replace({"-": ""}) }} = event.relatedTarget
+            // Extract info from data-bs-* attributes
+            const editPendenciaId{{ pendencia.id|replace({"-": ""}) }} = editPendneciaButton{{ pendencia.id|replace({"-": ""}) }}.getAttribute('data-bs-pendencia-id')
+            // If necessary, you could initiate an AJAX request here
+            // and then do the updating in a callback.
+            //
+            // Update the modal's content.
+            //const modalTitle = exampleModal.querySelector('.modal-title')
+            const editPendenciaModalBodyInput{{ pendencia.id|replace({"-": ""}) }} = editPendenciaModal{{ pendencia.id|replace({"-": ""}) }}.querySelector('#idPendenciaOnEditPendencia')
+
+            //modalTitle.textContent = `New message to ${recipient}`
+            editPendenciaModalBodyInput{{ pendencia.id|replace({"-": ""}) }}.value = editPendenciaId{{ pendencia.id|replace({"-": ""}) }}
+            })
+
+            // script for fecharpendencia modal
+            const fecharPendenciaModal{{ pendencia.id|replace({"-": ""}) }} = document.getElementById('fecharPendencia')
+            fecharPendenciaModal{{ pendencia.id|replace({"-": ""}) }}.addEventListener('show.bs.modal', event => {
+            // Button that triggered the modal
+            const fecharPendenciaButton{{ pendencia.id|replace({"-": ""}) }} = event.relatedTarget
+            // Extract info from data-bs-* attributes
+            const fecharPendenciaId{{ pendencia.id|replace({"-": ""}) }} = fecharPendenciaButton{{ pendencia.id|replace({"-": ""}) }}.getAttribute('data-bs-pendencia-id')
+            // If necessary, you could initiate an AJAX request here
+            // and then do the updating in a callback.
+            //
+            // Update the modal's content.
+            //const modalTitle = exampleModal.querySelector('.modal-title')
+            const fecharPendenciaModalBodyInput{{ pendencia.id|replace({"-": ""}) }} = fecharPendenciaModal{{ pendencia.id|replace({"-": ""}) }}.querySelector('#idPendenciaOnFecharPendencia')
+
+            //modalTitle.textContent = `New message to ${recipient}`
+            fecharPendenciaModalBodyInput{{ pendencia.id|replace({"-": ""}) }}.value = fecharPendenciaId{{ pendencia.id|replace({"-": ""}) }}
+            })
+        {% endfor %}
+    </script>
+{% endblock %}
+
+{% block modal %}
+<!-- Modal Adicionar andamento --> 
+<div class="modal fade modal-dialog modal-dialog-centered modal-fullscreen-sm-down" id="addAndamento" aria-labelledby="addAndamentoLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <form method="post">
+    <input type="hidden" id="idPendenciaOnAddPendencia" name="idPendencia">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addAndamentoLabel">Adicionar andamento</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+            <label for="exampleFormControlTextarea1" class="form-label">Andamento</label>
+            <textarea class="form-control" name="andamento" id="exampleFormControlTextarea1" rows="3"></textarea>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+    </form>
+  </div>
+</div>
+
+<!-- Modal editar pendência --> 
+<div class="modal fade modal-dialog modal-dialog-centered modal-fullscreen-sm-down" id="editPendencia" aria-labelledby="addAndamentoLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <form>
+    <input type="hidden" id="idPendenciaOnEditPendencia" name="idPendencia">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addAndamentoLabel">Editar Pendência</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+            <label for="exampleFormControlTextarea1" class="form-label">Andamento</label>
+            <textarea class="form-control" name="andamento" id="exampleFormControlTextarea1" rows="3"></textarea>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+    </form>
+  </div>
+</div>
+
+
+<!-- Modal adicionar pendência --> 
+<div class="modal fade modal-dialog modal-dialog-centered modal-fullscreen-sm-down" id="addPendencia" aria-labelledby="addAndamentoLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <form method="POST">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addAndamentoLabel">Adicionar Pendência</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+          <div class="mb-3">
+            <label for="tipo" class="col-form-label">Tipo de Pendência:</label>
+            <select class="form-select" id="tipo" name="tipo" aria-label="Default select example">
+              {% for tipo in tipos %}
+                <option value="{{ tipo.id }}">{{ tipo.tipo }}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="titulo" class="col-form-label">Titulo:</label>
+            <input type="text" class="form-control" id="titulo" name="titulo">
+          </div>
+          <div class="mb-3">
+            <label for="descricao" class="col-form-label">Descrição:</label>
+            <input type="text" class="form-control" id="descricao" name="descricao">
+          </div>
+          <div class="mb-3">
+            <label for="inicio" class="col-form-label">Data/hora inicio:</label>
+            <input type="datetime-local" class="form-control" id="inicio" name="inicio">
+          </div>
+          <div class="mb-3">
+            <label for="responsavel" class="col-form-label">Responsável:</label>
+            <input type="text" class="form-control" id="responsavel" name="responsavel">
+          </div>
+          <div class="mb-3">
+            <label for="previsao" class="col-form-label">Previsão:</label>
+            <input type="datetime-local" class="form-control" id="previsao" name="previsao">
+          </div>
+          <div class="mb-3">
+            <label for="task" class="col-form-label">Task (url):</label>
+            <input type="text" class="form-control" id="task" name="task">
+          </div>      
+          <div class="mb-3">
+            <label for="incidente" class="col-form-label">Incidente (url):</label>
+            <input type="text" class="form-control" id="incidente" name="incidente">
+          </div>                                
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="submit" name="new" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+    </form>
+  </div>
+</div>
+
+<!-- Modal fechar pendência --> 
+<div class="modal fade modal-dialog modal-dialog-centered modal-fullscreen-sm-down" id="fecharPendencia" aria-labelledby="addAndamentoLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <form>
+    <input type="hidden" id="idPendenciaOnFecharPendencia" name="idPendencia">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addAndamentoLabel">Concluir Pendência</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+            <label for="exampleFormControlTextarea1" class="form-label">Andamento</label>
+            <textarea class="form-control" name="andamento" id="exampleFormControlTextarea1" rows="3"></textarea>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+    </form>
+  </div>
+</div>
 {% endblock %}

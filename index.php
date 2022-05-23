@@ -12,8 +12,28 @@ if (!isset($_SESSION['logado']) or $_SESSION['logado'] != true) {
     if (!$_SESSION['usuario']->refresh_token()) {
         header('location: logout.php');
     } else {
-        // PENDENCIAS
+        // instanciate classes
         $pendencias = new \Controller\Pendencia($_SESSION['usuario']->token);
+        $andamentos = new Controller\Andamento($_SESSION['usuario']->token);
+
+        if (isset($_POST['andamento']) and $_POST['andamento'] != '') {
+            // adicionar andamento a pendência
+            $pendencias->addAndamento($_POST['idPendencia'], $_POST['andamento']);
+        } elseif (isset($_POST['fechar'])) {
+            // concluir pendencia
+
+            dump($_POST);
+        } elseif (isset($_POST['editar'])) {
+            // editar pendencia
+
+            dump($_POST);
+        } elseif (isset($_POST['new'])) {
+            $pendencias->addPendencia($_POST);
+        }
+
+
+        // if no post:
+        // PENDENCIAS
         $p = $pendencias->get_all();
 
         foreach ($p as $pendencia) {
@@ -26,14 +46,20 @@ if (!isset($_SESSION['logado']) or $_SESSION['logado'] != true) {
                     $pendencia->{'atrasado'} = true;
                 }
                 $pendencia->previsao = Controller\Date::convertFromJsToHuman($pendencia->previsao);
-                $andamento = new Controller\Andamento($_SESSION['usuario']->token);
-                $pendencia->{'andamentos'} = $andamento->get_all($pendencia->id);
+                $andamentos_all = $andamentos->get_all($pendencia->id);
+
+                foreach ($andamentos_all as $andamento) {
+                    $andamento->{'hora'} = Controller\Date::convertFromJsToHuman($andamento->created_at);
+                    $pendencia->{'andamentos'}[] = $andamento;
+                }
             }
         }
+        $tipos = new \Controller\TipoPendencia($_SESSION['usuario']->token);
 
         $vars['pendencias'] = $p;
+        $vars['tipos'] = $tipos->get_all();
 
-        dump($vars);
+        //dump($vars);
 
         $template = $twig->load('index.twig');
 

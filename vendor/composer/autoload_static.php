@@ -93,6 +93,7 @@ class ComposerStaticInit575308c50dffcaaa96e01d56272aad36
         'Controller\\Api' => __DIR__ . '/../..' . '/classes/Controllers/Api.php',
         'Controller\\Date' => __DIR__ . '/../..' . '/classes/Controllers/Date.php',
         'Controller\\Pendencia' => __DIR__ . '/../..' . '/classes/Controllers/Pendencia.php',
+        'Controller\\TipoPendencia' => __DIR__ . '/../..' . '/classes/Controllers/TipoPendencia.php',
         'Controller\\Usuario' => __DIR__ . '/../..' . '/classes/Controllers/Usuario.php',
         'PhpToken' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/PhpToken.php',
         'Stringable' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Stringable.php',

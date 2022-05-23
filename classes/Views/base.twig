@@ -26,16 +26,21 @@
     {% endif %}
 {% endblock %}
 
+
 <div class="container-fluid">
 {% block content %}
-
+    <!-- Conteúdo da pagina
 {% endblock %}
 </div>
 
+{% block modal %}
+{% endblock %}
+
+
+<script src="vendor/twbs/bootstrap/dist/js/bootstrap.js"></script>
+<script src="js/custom.js"></script>
 {% block scripts %}
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"></script>
-    <script src="vendor/twbs/bootstrap/dist/js/bootstrap.js"></script>
-    <script src="js/custom.js"></script>
+
 
 
 {% endblock %}

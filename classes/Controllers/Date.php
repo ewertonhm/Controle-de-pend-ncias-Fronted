@@ -25,4 +25,10 @@ class Date
 
         return $date->lessThan($now);
     }
+
+    public static function jsNow()
+    {
+        $now = Carbon::now();
+        return $now->format('Y-m-d\TH:i:s.uP');
+    }
 }

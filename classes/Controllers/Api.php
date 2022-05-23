@@ -12,8 +12,8 @@ class Api
 
     public function check_status()
     {
-        $status = $this->CallAPI_Unauthorized('GET','/users/login');
-        if(\is_object($status) && property_exists($status,"statusCode")){
+        $status = $this->CallAPI_Unauthorized('GET', '/users/login');
+        if (\is_object($status) && property_exists($status, "statusCode")) {
             return true;
         }
         return false;
@@ -22,14 +22,13 @@ class Api
     function CallAPI_Unauthorized($method, $url, $data = false)
     {
         $url = $this->base_url . $url;
-        
+
         $curl = curl_init();
 
         if ($data)
             $data = json_encode($data);
 
-        switch ($method)
-        {
+        switch ($method) {
             case "POST":
                 curl_setopt($curl, CURLOPT_POST, 1);
 
@@ -73,8 +72,7 @@ class Api
         if ($data)
             $data = json_encode($data);
 
-        switch ($method)
-        {
+        switch ($method) {
             case "POST":
                 curl_setopt($curl, CURLOPT_POST, 1);
 
@@ -83,6 +81,12 @@ class Api
                 break;
             case "PUT":
                 curl_setopt($curl, CURLOPT_PUT, 1);
+                break;
+            case "PATCH":
+                curl_setopt($curl, CURLOPT_CUSTOMREQUEST, 'PATCH');
+
+                if ($data)
+                    curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
                 break;
             default:
                 if ($data)
@@ -94,7 +98,7 @@ class Api
         //curl_setopt($curl, CURLOPT_USERPWD, "username:password");
         $authorization = "Authorization: Bearer " . $bearer_token;
 
-        curl_setopt($curl, CURLOPT_HTTPHEADER, array('Content-Type: application/json' , $authorization ));
+        curl_setopt($curl, CURLOPT_HTTPHEADER, array('Content-Type: application/json', $authorization));
         curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($curl, CURLOPT_FOLLOWLOCATION, 1);
@@ -104,7 +108,7 @@ class Api
 
         // Check HTTP return code, too; might be something else than 200
         $httpReturnCode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
-            
+
         // Check the return value of curl_exec(), too
         if ($result === false) {
             \dump($curl);
