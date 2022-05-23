@@ -19,8 +19,8 @@ if (!isset($_SESSION['logado']) or $_SESSION['logado'] != true) {
         if (isset($_POST['andamento']) and $_POST['andamento'] != '') {
             // adicionar andamento a pendência
             $pendencias->addAndamento($_POST['idPendencia'], $_POST['andamento']);
-        } elseif (isset($_POST['fechar'])) {
-            // concluir pendencia
+        } elseif (isset($_POST['fim']) and $_POST['fim'] != '') {
+            dump(Controller\Date::convertFromHtmlToJS($_POST['fim']));
 
             dump($_POST);
         } elseif (isset($_POST['editar'])) {
@@ -49,7 +49,7 @@ if (!isset($_SESSION['logado']) or $_SESSION['logado'] != true) {
                 $andamentos_all = $andamentos->get_all($pendencia->id);
 
                 foreach ($andamentos_all as $andamento) {
-                    $andamento->{'hora'} = Controller\Date::convertFromJsToHuman($andamento->created_at);
+                    $andamento->{'hora'} = Controller\Date::convertFromJsToHumanPluOne($andamento->created_at);
                     $pendencia->{'andamentos'}[] = $andamento;
                 }
             }

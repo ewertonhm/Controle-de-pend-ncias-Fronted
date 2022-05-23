@@ -1,5 +1,7 @@
 <?php
 
+date_default_timezone_set('America/Sao_Paulo');
+
 // setup the autoloading
 require_once 'vendor/autoload.php';
 

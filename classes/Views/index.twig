@@ -268,7 +268,7 @@
 <!-- Modal fechar pendência --> 
 <div class="modal fade modal-dialog modal-dialog-centered modal-fullscreen-sm-down" id="fecharPendencia" aria-labelledby="addAndamentoLabel" aria-hidden="true">
   <div class="modal-dialog">
-    <form>
+    <form method="POST">
     <input type="hidden" id="idPendenciaOnFecharPendencia" name="idPendencia">
     <div class="modal-content">
       <div class="modal-header">
@@ -276,8 +276,10 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-            <label for="exampleFormControlTextarea1" class="form-label">Andamento</label>
-            <textarea class="form-control" name="andamento" id="exampleFormControlTextarea1" rows="3"></textarea>
+          <div class="mb-3">
+            <label for="fim" class="col-form-label">Data/hora conclusão:</label>
+            <input type="datetime-local" class="form-control" id="fim" name="fim">
+          </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
