@@ -19,12 +19,20 @@ if (!isset($_SESSION['logado']) or $_SESSION['logado'] != true) {
         if (isset($_POST['andamento']) and $_POST['andamento'] != '') {
             // adicionar andamento a pendência
             $pendencias->addAndamento($_POST['idPendencia'], $_POST['andamento']);
+            unset($_POST);
+            header("Location: " . $_SERVER['REQUEST_URI']);
         } elseif (isset($_POST['fim']) and $_POST['fim'] != '') {
             $result = $pendencias->fecharPendencia($_POST['idPendencia'], $_POST['fim']);
+            unset($_POST);
+            header("Location: " . $_SERVER['REQUEST_URI']);
         } elseif (isset($_POST['edit'])) {
             $pendencias->editPendencia($_POST);
+            unset($_POST);
+            header("Location: " . $_SERVER['REQUEST_URI']);
         } elseif (isset($_POST['new'])) {
             $pendencias->addPendencia($_POST);
+            unset($_POST);
+            header("Location: " . $_SERVER['REQUEST_URI']);
         }
 
 
@@ -35,7 +43,7 @@ if (!isset($_SESSION['logado']) or $_SESSION['logado'] != true) {
         if (!isset($_GET['historico'])) {
             $vars['index'] = 'active';
             $counter = 0;
-            while ($counter < count($p)) {
+            while ($counter <= count($p)) {
                 if ($p[$counter]->fim != null) {
                     //dump($p);
                     unset($p[$counter]);
