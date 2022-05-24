@@ -39,13 +39,13 @@
                 </td>
                 <td>
                     <div>
-                        <a data-bs-toggle="modal" data-bs-target="#addAndamento" data-bs-pendencia-id="{{pendencia.id}}">
+                        <a data-bs-toggle="modal" data-bs-target="#addAndamento" data-bs-pendencia-id="{{pendencia.id}}" onClick="unHide('addAndamento')">
                             <i class="bi bi-chat-left-text" id="{{pendencia.id}}" rel="tooltip"  title="Andamentos"></i>
                         </a>
-                        <a data-bs-toggle="modal" data-bs-target="#editPendencia" data-bs-pendencia-id="{{pendencia.id}}">
+                        <a data-bs-toggle="modal" data-bs-target="#editPendencia" data-bs-pendencia-id="{{pendencia.id}}" onClick="unHide('editPendencia')">
                             <i class="bi bi-pencil-square" rel="tooltip" title="Editar pendência"></i>
                         </a>
-                        <a data-bs-toggle="modal" data-bs-target="#fecharPendencia" data-bs-pendencia-id="{{pendencia.id}}">
+                        <a data-bs-toggle="modal" data-bs-target="#fecharPendencia" data-bs-pendencia-id="{{pendencia.id}}" onClick="unHide('fecharPendencia')">
                             <i class="bi bi-check2-square" rel="tooltip" title="Concluir pendência"></i>
                         </a>
                         {% if pendencia.andamentos|length > 0 %}
@@ -158,6 +158,36 @@
             fecharPendenciaModalBodyInput{{ pendencia.id|replace({"-": ""}) }}.value = fecharPendenciaId{{ pendencia.id|replace({"-": ""}) }}
             })
         {% endfor %}
+
+        function unHide(id){
+            var element = document.getElementById(id);
+            element.hidden = false;
+        }
+        
+        function hide(id){
+            var element = document.getElementById(id);
+            element.hidden = true;
+        }
+
+        function hideModals(){
+          var addAndamento = document.getElementById("addAndamento");
+          var editPendencia = document.getElementById("editPendencia");
+          var addPendencia = document.getElementById("addPendencia");
+          var fecharPendencia = document.getElementById("fecharPendencia");
+          
+          console.log(addAndamento);
+          console.log(editPendencia);
+          console.log(addPendencia);
+          console.log(fecharPendencia);
+
+
+          addAndamento.hidden = true;
+          editPendencia.hidden = true;
+          addPendencia.hidden = true;
+          fecharPendencia.hidden = true;
+
+        }
+        document.onload= hideModals();
     </script>
 {% endblock %}
 
@@ -170,15 +200,15 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="addAndamentoLabel">Adicionar andamento</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick="hide('addAndamento')"></button>
       </div>
       <div class="modal-body">
             <label for="exampleFormControlTextarea1" class="form-label">Andamento</label>
             <textarea class="form-control" name="andamento" id="exampleFormControlTextarea1" rows="3"></textarea>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onClick="hide('addAndamento')">Close</button>
+        <button type="submit" class="btn btn-primary" onClick="hide('addAndamento')">Save changes</button>
       </div>
     </div>
     </form>
@@ -193,15 +223,15 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="addAndamentoLabel">Editar Pendência</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick="hide('editPendencia')"></button>
       </div>
       <div class="modal-body">
             <label for="exampleFormControlTextarea1" class="form-label">Andamento</label>
             <textarea class="form-control" name="andamento" id="exampleFormControlTextarea1" rows="3"></textarea>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onClick="hide('editPendencia')">Close</button>
+        <button type="submit" class="btn btn-primary" onClick="hide('editPendencia')">Save changes</button>
       </div>
     </div>
     </form>
@@ -210,13 +240,13 @@
 
 
 <!-- Modal adicionar pendência --> 
-<div class="modal fade modal-dialog modal-dialog-centered modal-fullscreen-sm-down" id="addPendencia" aria-labelledby="addAndamentoLabel" aria-hidden="true">
+<div class="modal fade modal-dialog modal-dialog-centered modal-fullscreen-sm-down" id="addPendencia" aria-labelledby="addAndamentoLabel"  aria-hidden="true">
   <div class="modal-dialog">
     <form method="POST">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="addAndamentoLabel">Adicionar Pendência</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick="hide('addPendencia')"></button>
       </div>
       <div class="modal-body">
           <div class="mb-3">
@@ -257,8 +287,8 @@
           </div>                                
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="submit" name="new" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onClick="hide('addPendencia')">Close</button>
+        <button type="submit" name="new" class="btn btn-primary" onClick="hide('addPendencia')">Save changes</button>
       </div>
     </div>
     </form>
@@ -273,7 +303,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="addAndamentoLabel">Concluir Pendência</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick="hide('fecharPendencia')"></button>
       </div>
       <div class="modal-body">
           <div class="mb-3">
@@ -282,8 +312,8 @@
           </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onClick="hide('fecharPendencia')">Close</button>
+        <button type="submit" class="btn btn-primary" onClick="hide('fecharPendencia')">Save changes</button>
       </div>
     </div>
     </form>
