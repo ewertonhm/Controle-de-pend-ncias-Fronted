@@ -40,6 +40,16 @@ if (!isset($_SESSION['logado']) or $_SESSION['logado'] != true) {
         // PENDENCIAS
         $p = $pendencias->get_all();
 
+        // Add pagination / create array_chunks
+        $pp = array_chunk($p, 23, false);
+
+        if (isset($_GET['page'])) {
+            $p = $pp[(int)$_GET['page']];
+        } else {
+            $p = $pp[0];
+        }
+
+
         if (!isset($_GET['historico'])) {
             $vars['index'] = 'active';
             $counter = 0;
