@@ -15,6 +15,8 @@ if (!isset($_SESSION['logado']) or $_SESSION['logado'] != true) {
         // instanciate classes
         $pendencias = new \Controller\Pendencia($_SESSION['usuario']->token);
         $andamentos = new Controller\Andamento($_SESSION['usuario']->token);
+        $sorting = new Controller\Sort();
+
 
         if (isset($_POST['andamento']) and $_POST['andamento'] != '') {
             // adicionar andamento a pendência
@@ -39,21 +41,16 @@ if (!isset($_SESSION['logado']) or $_SESSION['logado'] != true) {
         // if no post:
         // PENDENCIAS
         $p = $pendencias->get_all();
+        // sort
+        $p = $sorting->sort_by_inicio($p);
 
-        // Add pagination / create array_chunks
-        $pp = array_chunk($p, 23, false);
 
-        if (isset($_GET['page'])) {
-            $p = $pp[(int)$_GET['page']];
-        } else {
-            $p = $pp[0];
-        }
 
 
         if (!isset($_GET['historico'])) {
             $vars['index'] = 'active';
             $counter = 0;
-            while ($counter <= count($p)) {
+            while ($counter < count($p)) {
                 if ($p[$counter]->fim != null) {
                     //dump($p);
                     unset($p[$counter]);
@@ -64,6 +61,17 @@ if (!isset($_SESSION['logado']) or $_SESSION['logado'] != true) {
             }
         } else {
             $vars['historico'] = 'active';
+        }
+
+        // Add pagination / create array_chunks
+        $pp = array_chunk($p, 20, false);
+
+        $vars['pages'] = count($pp);
+
+        if (isset($_GET['page'])) {
+            $p = $pp[(int)$_GET['page']];
+        } else {
+            $p = $pp[0];
         }
 
         foreach ($p as $pendencia) {
@@ -91,9 +99,8 @@ if (!isset($_SESSION['logado']) or $_SESSION['logado'] != true) {
             }
         }
         $tipos = new \Controller\TipoPendencia($_SESSION['usuario']->token);
-        $sorting = new Controller\Sort();
 
-        $vars['pendencias'] = $sorting->sort_by_inicio($p);
+        $vars['pendencias'] = $p;
 
         $vars['tipos'] = $tipos->get_all();
 
