@@ -2,7 +2,7 @@
 
 require 'config.php';
 
-$vars = ['page_name' => 'Index', 'index' => 'active'];
+$vars = ['page_name' => 'Index'];
 
 // SESSION E TOKEN MANAGEMENT
 session_start();
@@ -31,6 +31,22 @@ if (!isset($_SESSION['logado']) or $_SESSION['logado'] != true) {
         // if no post:
         // PENDENCIAS
         $p = $pendencias->get_all();
+
+        if (!isset($_GET['historico'])) {
+            $vars['index'] = 'active';
+            $counter = 0;
+            while ($counter < count($p)) {
+                if ($p[$counter]->fim != null) {
+                    //dump($p);
+                    unset($p[$counter]);
+                }
+
+
+                $counter++;
+            }
+        } else {
+            $vars['historico'] = 'active';
+        }
 
         foreach ($p as $pendencia) {
             $pendencia->{'hora_abertura'} = Controller\Date::convertFromJsToHumanPluOne($pendencia->created_at);

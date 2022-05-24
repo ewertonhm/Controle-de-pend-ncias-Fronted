@@ -46,13 +46,7 @@
 {% endblock %}
 
 {% block bottombar %}
-<div class="bottombar">
-    <a href="index.php" {% if index == 'active' %}class="active"{% endif %}>Home</a>
-    <a href="tipos.php" {% if tipos == 'active' %}class="active"{% endif %}>Tipos de Incidente</a>
-    <a href="usuarios.php" {% if usuarios == 'active' %}class="active"{% endif %}>Usuários</a>
-
-    <a class="align-right" href="logout.php">Logout</a>
-</div>
+    {% include 'bottombar.html' %}
 {% endblock %}
 </body>
 </html>

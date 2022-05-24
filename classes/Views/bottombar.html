@@ -1,0 +1,9 @@
+<div class="bottombar">
+    <a href="index.php" {% if index=='active' %}class="active" {% endif %}>Home</a>
+    <a href="index.php?historico=true" {% if historico=='active' %}class="active" {% endif %}>Histórico</a>
+
+    <a href="tipos.php" {% if tipos=='active' %}class="active" {% endif %}>Tipos de Incidente</a>
+    <a href="usuarios.php" {% if usuarios=='active' %}class="active" {% endif %}>Usuários</a>
+
+    <a class="align-right" href="logout.php">Logout</a>
+</div>
