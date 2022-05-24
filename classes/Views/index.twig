@@ -5,9 +5,9 @@
     <thead>
         <tr>
         <th scope="col">Inicio</th>
+        <th scope="col">Previsão</th>
         <th scope="col">Titulo</th>
         <th scope="col">Tipo</th>
-        <th scope="col">Previsão</th>
         <th scope="col">Responsável</th>
         <th scope="col">Task</th> <!-- botão -->
         <th scope="col">Incidente</th> <!-- botão -->
@@ -18,23 +18,24 @@
         {% for pendencia in pendencias %}
             <tr>
                 <td>{{ pendencia.inicio }}</td>
-                <td>{{ pendencia.titulo }}</td>
-                <td>{{ pendencia.tipoPendencia.tipo }}</td>
                 <td>
                     {{ pendencia.previsao }} 
                     {% if pendencia.atrasado %}
                         <span class="badge text-bg-danger">Atrasado</span>
                     {% endif %}
                 </td>
+                <td>{{ pendencia.titulo }}</td>
+                <td>{{ pendencia.tipoPendencia.tipo }}</td>
+
                 <td>{{ pendencia.responsavel }}</td>
                 <td>   
                     {% if pendencia.task %}
-                        <a href="{{ pendencia.task }}">task</a>
+                        <a href="{{ pendencia.task }}" target="_blank">task</a>
                     {% endif %}
                 </td>
                 <td>
                     {% if pendencia.incidente %}
-                        <a href="{{ pendencia.incidente }}">incidente</a>
+                        <a href="{{ pendencia.incidente }}" target="_blank">incidente</a>
                     {% endif %}
                 </td>
                 <td>
@@ -174,12 +175,6 @@
           var editPendencia = document.getElementById("editPendencia");
           var addPendencia = document.getElementById("addPendencia");
           var fecharPendencia = document.getElementById("fecharPendencia");
-          
-          console.log(addAndamento);
-          console.log(editPendencia);
-          console.log(addPendencia);
-          console.log(fecharPendencia);
-
 
           addAndamento.hidden = true;
           editPendencia.hidden = true;
@@ -192,131 +187,131 @@
 {% endblock %}
 
 {% block modal %}
-<!-- Modal Adicionar andamento --> 
-<div class="modal fade modal-dialog modal-dialog-centered modal-fullscreen-sm-down" id="addAndamento" aria-labelledby="addAndamentoLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <form method="post">
-    <input type="hidden" id="idPendenciaOnAddPendencia" name="idPendencia">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="addAndamentoLabel">Adicionar andamento</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick="hide('addAndamento')"></button>
+  <!-- Modal Adicionar andamento --> 
+  <div class="modal fade modal-dialog modal-dialog-centered modal-fullscreen-sm-down" id="addAndamento" aria-labelledby="addAndamentoLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <form method="post">
+      <input type="hidden" id="idPendenciaOnAddPendencia" name="idPendencia">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addAndamentoLabel">Adicionar andamento</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick="hide('addAndamento')"></button>
+        </div>
+        <div class="modal-body">
+              <label for="exampleFormControlTextarea1" class="form-label">Andamento</label>
+              <textarea class="form-control" name="andamento" id="exampleFormControlTextarea1" rows="3"></textarea>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onClick="hide('addAndamento')">Close</button>
+          <button type="submit" class="btn btn-primary" onClick="hide('addAndamento')">Save changes</button>
+        </div>
       </div>
-      <div class="modal-body">
-            <label for="exampleFormControlTextarea1" class="form-label">Andamento</label>
-            <textarea class="form-control" name="andamento" id="exampleFormControlTextarea1" rows="3"></textarea>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onClick="hide('addAndamento')">Close</button>
-        <button type="submit" class="btn btn-primary" onClick="hide('addAndamento')">Save changes</button>
-      </div>
+      </form>
     </div>
-    </form>
   </div>
-</div>
 
-<!-- Modal editar pendência --> 
-<div class="modal fade modal-dialog modal-dialog-centered modal-fullscreen-sm-down" id="editPendencia" aria-labelledby="addAndamentoLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <form>
-    <input type="hidden" id="idPendenciaOnEditPendencia" name="idPendencia">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="addAndamentoLabel">Editar Pendência</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick="hide('editPendencia')"></button>
+  <!-- Modal editar pendência --> 
+  <div class="modal fade modal-dialog modal-dialog-centered modal-fullscreen-sm-down" id="editPendencia" aria-labelledby="addAndamentoLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <form>
+      <input type="hidden" id="idPendenciaOnEditPendencia" name="idPendencia">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addAndamentoLabel">Editar Pendência</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick="hide('editPendencia')"></button>
+        </div>
+        <div class="modal-body">
+              <label for="exampleFormControlTextarea1" class="form-label">Andamento</label>
+              <textarea class="form-control" name="andamento" id="exampleFormControlTextarea1" rows="3"></textarea>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onClick="hide('editPendencia')">Close</button>
+          <button type="submit" class="btn btn-primary" onClick="hide('editPendencia')">Save changes</button>
+        </div>
       </div>
-      <div class="modal-body">
-            <label for="exampleFormControlTextarea1" class="form-label">Andamento</label>
-            <textarea class="form-control" name="andamento" id="exampleFormControlTextarea1" rows="3"></textarea>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onClick="hide('editPendencia')">Close</button>
-        <button type="submit" class="btn btn-primary" onClick="hide('editPendencia')">Save changes</button>
-      </div>
+      </form>
     </div>
-    </form>
   </div>
-</div>
 
 
-<!-- Modal adicionar pendência --> 
-<div class="modal fade modal-dialog modal-dialog-centered modal-fullscreen-sm-down" id="addPendencia" aria-labelledby="addAndamentoLabel"  aria-hidden="true">
-  <div class="modal-dialog">
-    <form method="POST">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="addAndamentoLabel">Adicionar Pendência</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick="hide('addPendencia')"></button>
+  <!-- Modal adicionar pendência --> 
+  <div class="modal fade modal-dialog modal-dialog-centered modal-fullscreen-sm-down" id="addPendencia" aria-labelledby="addAndamentoLabel"  aria-hidden="true">
+    <div class="modal-dialog">
+      <form method="POST">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addAndamentoLabel">Adicionar Pendência</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick="hide('addPendencia')"></button>
+        </div>
+        <div class="modal-body">
+            <div class="mb-3">
+              <label for="tipo" class="col-form-label">Tipo de Pendência:</label>
+              <select class="form-select" id="tipo" name="tipo" aria-label="Default select example">
+                {% for tipo in tipos %}
+                  <option value="{{ tipo.id }}">{{ tipo.tipo }}</option>
+                {% endfor %}
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="titulo" class="col-form-label">Titulo:</label>
+              <input type="text" class="form-control" id="titulo" name="titulo">
+            </div>
+            <div class="mb-3">
+              <label for="descricao" class="col-form-label">Descrição:</label>
+              <input type="text" class="form-control" id="descricao" name="descricao">
+            </div>
+            <div class="mb-3">
+              <label for="inicio" class="col-form-label">Data/hora inicio:</label>
+              <input type="datetime-local" class="form-control" id="inicio" name="inicio">
+            </div>
+            <div class="mb-3">
+              <label for="responsavel" class="col-form-label">Responsável:</label>
+              <input type="text" class="form-control" id="responsavel" name="responsavel">
+            </div>
+            <div class="mb-3">
+              <label for="previsao" class="col-form-label">Previsão:</label>
+              <input type="datetime-local" class="form-control" id="previsao" name="previsao">
+            </div>
+            <div class="mb-3">
+              <label for="task" class="col-form-label">Task (url):</label>
+              <input type="text" class="form-control" id="task" name="task">
+            </div>      
+            <div class="mb-3">
+              <label for="incidente" class="col-form-label">Incidente (url):</label>
+              <input type="text" class="form-control" id="incidente" name="incidente">
+            </div>                                
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onClick="hide('addPendencia')">Close</button>
+          <button type="submit" name="new" class="btn btn-primary" onClick="hide('addPendencia')">Save changes</button>
+        </div>
       </div>
-      <div class="modal-body">
-          <div class="mb-3">
-            <label for="tipo" class="col-form-label">Tipo de Pendência:</label>
-            <select class="form-select" id="tipo" name="tipo" aria-label="Default select example">
-              {% for tipo in tipos %}
-                <option value="{{ tipo.id }}">{{ tipo.tipo }}</option>
-              {% endfor %}
-            </select>
-          </div>
-          <div class="mb-3">
-            <label for="titulo" class="col-form-label">Titulo:</label>
-            <input type="text" class="form-control" id="titulo" name="titulo">
-          </div>
-          <div class="mb-3">
-            <label for="descricao" class="col-form-label">Descrição:</label>
-            <input type="text" class="form-control" id="descricao" name="descricao">
-          </div>
-          <div class="mb-3">
-            <label for="inicio" class="col-form-label">Data/hora inicio:</label>
-            <input type="datetime-local" class="form-control" id="inicio" name="inicio">
-          </div>
-          <div class="mb-3">
-            <label for="responsavel" class="col-form-label">Responsável:</label>
-            <input type="text" class="form-control" id="responsavel" name="responsavel">
-          </div>
-          <div class="mb-3">
-            <label for="previsao" class="col-form-label">Previsão:</label>
-            <input type="datetime-local" class="form-control" id="previsao" name="previsao">
-          </div>
-          <div class="mb-3">
-            <label for="task" class="col-form-label">Task (url):</label>
-            <input type="text" class="form-control" id="task" name="task">
-          </div>      
-          <div class="mb-3">
-            <label for="incidente" class="col-form-label">Incidente (url):</label>
-            <input type="text" class="form-control" id="incidente" name="incidente">
-          </div>                                
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onClick="hide('addPendencia')">Close</button>
-        <button type="submit" name="new" class="btn btn-primary" onClick="hide('addPendencia')">Save changes</button>
-      </div>
+      </form>
     </div>
-    </form>
   </div>
-</div>
 
-<!-- Modal fechar pendência --> 
-<div class="modal fade modal-dialog modal-dialog-centered modal-fullscreen-sm-down" id="fecharPendencia" aria-labelledby="addAndamentoLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <form method="POST">
-    <input type="hidden" id="idPendenciaOnFecharPendencia" name="idPendencia">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="addAndamentoLabel">Concluir Pendência</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick="hide('fecharPendencia')"></button>
+  <!-- Modal fechar pendência --> 
+  <div class="modal fade modal-dialog modal-dialog-centered modal-fullscreen-sm-down" id="fecharPendencia" aria-labelledby="addAndamentoLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <form method="POST">
+      <input type="hidden" id="idPendenciaOnFecharPendencia" name="idPendencia">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addAndamentoLabel">Concluir Pendência</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick="hide('fecharPendencia')"></button>
+        </div>
+        <div class="modal-body">
+            <div class="mb-3">
+              <label for="fim" class="col-form-label">Data/hora conclusão:</label>
+              <input type="datetime-local" class="form-control" id="fim" name="fim">
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onClick="hide('fecharPendencia')">Close</button>
+          <button type="submit" class="btn btn-primary" onClick="hide('fecharPendencia')">Save changes</button>
+        </div>
       </div>
-      <div class="modal-body">
-          <div class="mb-3">
-            <label for="fim" class="col-form-label">Data/hora conclusão:</label>
-            <input type="datetime-local" class="form-control" id="fim" name="fim">
-          </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onClick="hide('fecharPendencia')">Close</button>
-        <button type="submit" class="btn btn-primary" onClick="hide('fecharPendencia')">Save changes</button>
-      </div>
+      </form>
     </div>
-    </form>
   </div>
-</div>
 {% endblock %}

@@ -75,4 +75,11 @@ class Pendencia
         // talvez não funcione, falta testar o patch
         return $pendencias;
     }
+    public function fecharPendencia($id, $hora)
+    {
+        $data = ["fim" => Date::convertFromHtmlToJS($hora)];
+        $pendencias = $this->api->CallAPI("PATCH", "/pendencias/$id/close", $this->token, $data);
+
+        return $pendencias;
+    }
 }
