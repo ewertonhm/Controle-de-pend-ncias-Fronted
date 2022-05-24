@@ -18,3 +18,40 @@
    margin-left: auto;
    margin-right: auto;
 }
+
+/* Place the navbar at the bottom of the page, and make it stick */
+.bottombar {
+   background-color: #212529;
+   overflow: hidden;
+   position: fixed;
+   bottom: 0;
+   width: 100%;
+}
+
+/* Style the links inside the navigation bar */
+.bottombar a {
+   float: left;
+   display: block;
+   color: #f2f2f2;
+   text-align: center;
+   padding: 14px 16px;
+   text-decoration: none;
+   font-size: 12px;
+}
+
+.align-right {
+   float: right !important;
+   padding: 10px;
+}
+
+/* Change the color of links on hover */
+.bottombar a:hover {
+   background-color: #343a40;
+   color: white;
+}
+
+/* Add a color to the active/current link */
+.bottombar a.active {
+   background-color: #141414;
+   color: white;
+}

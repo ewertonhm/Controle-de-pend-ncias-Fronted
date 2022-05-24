@@ -2,7 +2,7 @@
 
 require 'config.php';
 
-$vars = ['page_name' => 'Index'];
+$vars = ['page_name' => 'Index', 'index' => 'active'];
 
 // SESSION E TOKEN MANAGEMENT
 session_start();
