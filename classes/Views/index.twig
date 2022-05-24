@@ -23,8 +23,11 @@
                 <td>{{ pendencia.responsavel }}</td>
                 <td>{{ pendencia.inicio }}</td>
                 <td>
-                    {{ pendencia.previsao }} 
-                    {% if pendencia.atrasado %}
+                    {% if pendencia.fim %}
+                        {{ pendencia.fim }}
+                        <span class="badge text-bg-success">Concluído</span>
+                    {% elseif pendencia.atrasado %}
+                        {{ pendencia.previsao }} 
                         <span class="badge text-bg-danger">Atrasado</span>
                     {% endif %}
                 </td>
