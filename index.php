@@ -20,13 +20,9 @@ if (!isset($_SESSION['logado']) or $_SESSION['logado'] != true) {
             // adicionar andamento a pendência
             $pendencias->addAndamento($_POST['idPendencia'], $_POST['andamento']);
         } elseif (isset($_POST['fim']) and $_POST['fim'] != '') {
-            $pendencias->fecharPendencia($_POST['idPendencia'], $_POST['fim']);
-
-            dump($_POST);
-        } elseif (isset($_POST['editar'])) {
-            // editar pendencia
-
-            dump($_POST);
+            $result = $pendencias->fecharPendencia($_POST['idPendencia'], $_POST['fim']);
+        } elseif (isset($_POST['edit'])) {
+            $pendencias->editPendencia($_POST);
         } elseif (isset($_POST['new'])) {
             $pendencias->addPendencia($_POST);
         }

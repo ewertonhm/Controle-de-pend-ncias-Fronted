@@ -50,28 +50,20 @@ class Pendencia
         $pendencias = $this->api->CallAPI("POST", "/pendencias", $this->token, $data);
         return $pendencias;
     }
-    public function editPendencia(
-        $id,
-        $tipoPendenciaId,
-        $titulo,
-        $descricao,
-        $inicio,
-        $responsavel,
-        $previsao,
-        $task,
-        $incidente
-    ) {
+    public function editPendencia($POST)
+    {
         $data = [
-            "tipoPendenciaId" => $tipoPendenciaId,
-            "titulo" => $titulo,
-            "descricao" => $descricao,
-            "inicio" => $inicio,
-            "responsavel" => $responsavel,
-            "previsao" => $previsao,
-            "task" => $task,
-            "incidente" => $incidente
+            "tipoPendenciaId" => $POST['tipo'],
+            "titulo" => $POST['titulo'],
+            "descricao" => $POST['descricao'],
+            "inicio" => $POST['inicio'],
+            "responsavel" => $POST['responsavel'],
+            "previsao" => $POST['previsao'],
+            "task" => $POST['task'],
+            "incidente" => $POST['incidente'],
         ];
-        $pendencias = $this->api->CallAPI("PATCH", "/pendencias", $this->token, $data);
+        $id = $POST['idPendencia'];
+        $pendencias = $this->api->CallAPI("PATCH", "/pendencias/$id", $this->token, $data);
         return $pendencias;
     }
     public function fecharPendencia($id, $hora)
