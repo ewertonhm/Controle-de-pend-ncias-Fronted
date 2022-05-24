@@ -31,7 +31,5 @@ var pendenciaData = {
     andamentoData = {};
 {% endfor %}
 
-console.log(pendenciaData);
-
 pendencias.push(pendenciaData);
 pendenciaData = {};

@@ -52,7 +52,29 @@ function populateDetailsPendencia(id){
             task.href = pendencias[i].task;
 
             // andamentos
-            
+            let table = document.getElementById("andamentosTable");
+            for (x in pendencias[i].andamentos){
+                let row = document.createElement("tr");
+                
+                let tdhora = document.createElement("td");
+                let tdhoratext = document.createTextNode(pendencias[i].andamentos[x].data);
+                tdhora.appendChild(tdhoratext);
+
+                let tdusuario = document.createElement("td");
+                let tdusuariotext = document.createTextNode(pendencias[i].andamentos[x].user);
+                tdusuario.appendChild(tdusuariotext);
+
+                let tdandamento = document.createElement("td");
+                let tdandamentotext = document.createTextNode(pendencias[i].andamentos[x].andamento);
+                tdandamento.appendChild(tdandamentotext);
+
+                row.appendChild(tdhora);
+                row.appendChild(tdusuario);
+                row.appendChild(tdandamento);
+
+                table.appendChild(row);
+                
+            }
             break;
         }
     }
