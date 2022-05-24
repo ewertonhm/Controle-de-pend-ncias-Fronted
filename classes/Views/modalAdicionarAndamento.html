@@ -1,0 +1,25 @@
+<div class="modal fade modal-dialog modal-dialog-centered modal-fullscreen-sm-down" id="addAndamento"
+    aria-labelledby="addAndamentoLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <form method="post">
+            <input type="hidden" id="idPendenciaOnAddPendencia" name="idPendencia">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addAndamentoLabel">Adicionar andamento</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                        onClick="hide('addAndamento')"></button>
+                </div>
+                <div class="modal-body">
+                    <label for="exampleFormControlTextarea1" class="form-label">Andamento</label>
+                    <textarea class="form-control" name="andamento" id="exampleFormControlTextarea1"
+                        rows="3"></textarea>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                        onClick="hide('addAndamento')">Close</button>
+                    <button type="submit" class="btn btn-primary" onClick="hide('addAndamento')">Save changes</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

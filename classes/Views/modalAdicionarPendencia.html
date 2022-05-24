@@ -1,0 +1,58 @@
+<div class="modal fade modal-dialog modal-dialog-centered modal-fullscreen-sm-down" id="addPendencia"
+    aria-labelledby="addAndamentoLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <form method="POST">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addAndamentoLabel">Adicionar Pendência</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                        onClick="hide('addPendencia')"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="tipo" class="col-form-label">Tipo de Pendência:</label>
+                        <select class="form-select" id="tipo" name="tipo" aria-label="Default select example">
+                            {% for tipo in tipos %}
+                            <option value="{{ tipo.id }}">{{ tipo.tipo }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="titulo" class="col-form-label">Titulo:</label>
+                        <input type="text" class="form-control" id="titulo" name="titulo">
+                    </div>
+                    <div class="mb-3">
+                        <label for="descricao" class="col-form-label">Descrição:</label>
+                        <input type="text" class="form-control" id="descricao" name="descricao">
+                    </div>
+                    <div class="mb-3">
+                        <label for="inicio" class="col-form-label">Data/hora inicio:</label>
+                        <input type="datetime-local" class="form-control" id="inicio" name="inicio">
+                    </div>
+                    <div class="mb-3">
+                        <label for="responsavel" class="col-form-label">Responsável:</label>
+                        <input type="text" class="form-control" id="responsavel" name="responsavel">
+                    </div>
+                    <div class="mb-3">
+                        <label for="previsao" class="col-form-label">Previsão:</label>
+                        <input type="datetime-local" class="form-control" id="previsao" name="previsao">
+                    </div>
+                    <div class="mb-3">
+                        <label for="task" class="col-form-label">Task (url):</label>
+                        <input type="text" class="form-control" id="task" name="task">
+                    </div>
+                    <div class="mb-3">
+                        <label for="incidente" class="col-form-label">Incidente (url):</label>
+                        <input type="text" class="form-control" id="incidente" name="incidente">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                        onClick="hide('addPendencia')">Close</button>
+                    <button type="submit" name="new" class="btn btn-primary" onClick="hide('addPendencia')">Save
+                        changes</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

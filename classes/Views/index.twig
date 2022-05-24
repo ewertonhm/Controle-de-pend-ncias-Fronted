@@ -1,91 +1,7 @@
 {% extends "base.twig" %}
 
 {% block content %}
-    <table class="table table-dark table-striped table-hover">
-    <thead>
-        <tr>
-        <th scope="col">Titulo</th>
-        <th scope="col">Tipo</th>
-        <th scope="col">Responsável</th>
-        <th scope="col">Inicio</th>
-        <th scope="col">Previsão</th>
-        <th scope="col">Task</th> <!-- botão -->
-        <th scope="col">Incidente</th> <!-- botão -->
-        <th scope="col"></th> <!-- hover text (last) / on click (add) -->
-        </tr>
-    </thead>
-    <tbody>
-        {% for pendencia in pendencias %}
-            <tr>
-                <td>{{ pendencia.titulo }}</td>
-                <td>{{ pendencia.tipoPendencia.tipo }}</td>
-
-                <td>{{ pendencia.responsavel }}</td>
-                <td>{{ pendencia.inicio }}</td>
-                <td>
-                    {% if pendencia.fim %}
-                        {{ pendencia.fim }}
-                        <span class="badge text-bg-success">Concluído</span>
-                    {% elseif pendencia.atrasado %}
-                        {{ pendencia.previsao }} 
-                        <span class="badge text-bg-danger">Atrasado</span>
-                    {% else %}
-                        {{ pendencia.previsao }} 
-                    {% endif %}
-                </td>
-
-                <td>   
-                    {% if pendencia.task %}
-                        <a href="{{ pendencia.task }}" target="_blank">task</a>
-                    {% endif %}
-                </td>
-                <td>
-                    {% if pendencia.incidente %}
-                        <a href="{{ pendencia.incidente }}" target="_blank">incidente</a>
-                    {% endif %}
-                </td>
-                <td>
-                    <div>
-                        <a data-bs-toggle="modal" data-bs-target="#addAndamento" data-bs-pendencia-id="{{pendencia.id}}" onClick="unHide('addAndamento')">
-                            <i class="bi bi-chat-left-text" id="{{pendencia.id}}" rel="tooltip"  title="Andamentos"></i>
-                        </a>
-                        <a data-bs-toggle="modal" data-bs-target="#editPendencia" data-bs-pendencia-id="{{pendencia.id}}" onClick="prePopulateForm('{{pendencia.id}}')">
-                            <i class="bi bi-pencil-square" rel="tooltip" title="Editar pendência"></i>
-                        </a>
-                        <a data-bs-toggle="modal" data-bs-target="#fecharPendencia" data-bs-pendencia-id="{{pendencia.id}}" onClick="unHide('fecharPendencia')">
-                            <i class="bi bi-check2-square" rel="tooltip" title="Concluir pendência"></i>
-                        </a>
-                        {% if pendencia.andamentos|length > 0 %}
-                            <div id="{{pendencia.id}}_hidden" class="container-sm content__block">
-                                <table class="table table-sm table-responsive-sm table-dark table-striped">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">Hora</th>
-                                            <th scope="col">Usuario</th>
-                                            <th scope="col">Andamento</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {% for andamento in pendencia.andamentos %}
-                                        <tr>
-                                            <td>{{ andamento.hora }}</td>
-                                            <td>{{ andamento.user.email }}</td>
-                                            <td>{{ andamento.andamento }}</td>
-                                        <tr>
-                                        {% endfor %}
-                                    </tbody>
-                                </table>
-                            </div>
-                        {% endif %}
-
-                    </div>                    
-                </td>
-            </tr>
-        {% endfor %}
-    </tbody>
-    </table>
-
-
+  {% include 'pendenciasTable.html' %}
 {% endblock %}
 
 {% block scripts %}
@@ -95,297 +11,37 @@
         // script to show andamentos table on mouse over
         {% for pendencia in pendencias %}
             {% if pendencia.andamentos|length > 0 %}
-
-                let el{{ pendencia.id|replace({"-": ""}) }} = document.getElementById('{{ pendencia.id }}');
-                let hiddenDiv{{ pendencia.id|replace({"-": ""}) }}  = document.getElementById('{{ pendencia.id }}_hidden');
-
-
-
-                el{{ pendencia.id|replace({"-": ""}) }}.addEventListener('mouseover', function handleMouseOver() {
-                hiddenDiv{{ pendencia.id|replace({"-": ""}) }}.style.display = 'block';
-
-                });
-
-                el{{ pendencia.id|replace({"-": ""}) }}.addEventListener('mouseout', function handleMouseOut() {
-                hiddenDiv{{ pendencia.id|replace({"-": ""}) }}.style.display = 'none';
-
-                });
+              {% include 'eventListners.js' %}
             {% endif %}
 
-            // create listners for the modals
-            const addAndamentoModal{{ pendencia.id|replace({"-": ""}) }} = document.getElementById('addAndamento');
-            addAndamentoModal{{ pendencia.id|replace({"-": ""}) }}.addEventListener('show.bs.modal', event => {
-            const addAndamentoButton{{ pendencia.id|replace({"-": ""}) }} = event.relatedTarget;
-            const addAndamentoId{{ pendencia.id|replace({"-": ""}) }} = addAndamentoButton{{ pendencia.id|replace({"-": ""}) }}.getAttribute('data-bs-pendencia-id');
-            const addAndamentoModalBodyInput{{ pendencia.id|replace({"-": ""}) }} = addAndamentoModal{{ pendencia.id|replace({"-": ""}) }}.querySelector('#idPendenciaOnAddPendencia');
+            {% include 'modalListners.js' %}
 
-
-            addAndamentoModalBodyInput{{ pendencia.id|replace({"-": ""}) }}.value = addAndamentoId{{ pendencia.id|replace({"-": ""}) }};
-            })
-            const editPendenciaModal{{ pendencia.id|replace({"-": ""}) }} = document.getElementById('editPendencia');
-            editPendenciaModal{{ pendencia.id|replace({"-": ""}) }}.addEventListener('show.bs.modal', event => {
-            const editPendneciaButton{{ pendencia.id|replace({"-": ""}) }} = event.relatedTarget;
-            const editPendenciaId{{ pendencia.id|replace({"-": ""}) }} = editPendneciaButton{{ pendencia.id|replace({"-": ""}) }}.getAttribute('data-bs-pendencia-id');
-            const editPendenciaModalBodyInput{{ pendencia.id|replace({"-": ""}) }} = editPendenciaModal{{ pendencia.id|replace({"-": ""}) }}.querySelector('#idPendenciaOnEditPendencia');
-            editPendenciaModalBodyInput{{ pendencia.id|replace({"-": ""}) }}.value = editPendenciaId{{ pendencia.id|replace({"-": ""}) }};
-            })
-
-            const fecharPendenciaModal{{ pendencia.id|replace({"-": ""}) }} = document.getElementById('fecharPendencia');
-            fecharPendenciaModal{{ pendencia.id|replace({"-": ""}) }}.addEventListener('show.bs.modal', event => {
-            const fecharPendenciaButton{{ pendencia.id|replace({"-": ""}) }} = event.relatedTarget;
-            const fecharPendenciaId{{ pendencia.id|replace({"-": ""}) }} = fecharPendenciaButton{{ pendencia.id|replace({"-": ""}) }}.getAttribute('data-bs-pendencia-id');
-            const fecharPendenciaModalBodyInput{{ pendencia.id|replace({"-": ""}) }} = fecharPendenciaModal{{ pendencia.id|replace({"-": ""}) }}.querySelector('#idPendenciaOnFecharPendencia');
-            fecharPendenciaModalBodyInput{{ pendencia.id|replace({"-": ""}) }}.value = fecharPendenciaId{{ pendencia.id|replace({"-": ""}) }};
-            })
             // save the form data in JS for later use
-            var pendenciaData = {
-              id: "{{ pendencia.id }}",
-              tipo: "{{ pendencia.tipoPendencia.id }}",
-              titulo: "{{ pendencia.titulo }}",
-              descricao: "{{ pendencia.descricao }}",
-              inicio: "{{ pendencia.inicio }}",
-              previsao: "{{ pendencia.previsao }}",
-              responsavel: "{{ pendencia.responsavel }}",
-              task: "{{ pendencia.task }}",
-              incidente: "{{ pendencia.incidente }}"
-            };
+            {% include 'populatePendenciasVar.js' %}
 
-            pendencias.push(pendenciaData);
-            pendenciaData = {};
         {% endfor %}
 
-        function unHide(id){
-            var element = document.getElementById(id);
-            element.hidden = false;
-        }
-        
-        function hide(id){
-            var element = document.getElementById(id);
-            element.hidden = true;
-        }
-
-        function hideModals(){
-          var addAndamento = document.getElementById("addAndamento");
-          var editPendencia = document.getElementById("editPendencia");
-          var addPendencia = document.getElementById("addPendencia");
-          var fecharPendencia = document.getElementById("fecharPendencia");
-
-          addAndamento.hidden = true;
-          editPendencia.hidden = true;
-          addPendencia.hidden = true;
-          fecharPendencia.hidden = true;
-
-        }
-        function convertDateTime(datetime){
-          let inicioDate = new Date(datetime);
-          var tzoffset = (new Date()).getTimezoneOffset() * 60000; 
-          var localISOTime = (new Date(inicioDate - tzoffset)).toISOString().slice(0, 19);
-
-          return localISOTime;
-        }
-
-        function prePopulateForm(id){
-            // unhide because this function is called in the on click instead
-            
-            for(var i in pendencias){
-                if(pendencias[i].id == id){
-                    let tipo = document.getElementById("editTipo");
-                    tipo.value = pendencias[i].tipo;
-
-                    let titulo = document.getElementById("editTitulo");
-                    titulo.value = pendencias[i].titulo;
-
-                    let descricao = document.getElementById("editDescricao");
-                    descricao.value = pendencias[i].descricao;
-
-                    let inicio = document.getElementById("editInicio");
-                    inicio.value = convertDateTime(pendencias[i].inicio);
-
-                    let responsavel = document.getElementById("editResponsavel");
-                    responsavel.value = pendencias[i].responsavel;
-
-                    let previsao = document.getElementById("editPrevisao");
-                    previsao.value = convertDateTime(pendencias[i].previsao);
-
-                    let task = document.getElementById("editTask");
-                    task.value = pendencias[i].task;
-
-                    let incidente = document.getElementById("editIncidente")
-                    incidente.value = pendencias[i].incidente;
-
-                    break;
-                }
-            }
-            unHide('editPendencia');
-        }
-
-        document.onload= hideModals();
-        
-
-
+        {% include 'hideAndUnhide.js' %}
+        {% include 'convertDateTime.js' %}
+        {% include 'hideModals.js' %}
+        {% include 'prePopulateForm.js' %}
     </script>
 {% endblock %}
 
 {% block modal %}
   <!-- Modal Adicionar andamento --> 
-  <div class="modal fade modal-dialog modal-dialog-centered modal-fullscreen-sm-down" id="addAndamento" aria-labelledby="addAndamentoLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <form method="post">
-      <input type="hidden" id="idPendenciaOnAddPendencia" name="idPendencia">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="addAndamentoLabel">Adicionar andamento</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick="hide('addAndamento')"></button>
-        </div>
-        <div class="modal-body">
-              <label for="exampleFormControlTextarea1" class="form-label">Andamento</label>
-              <textarea class="form-control" name="andamento" id="exampleFormControlTextarea1" rows="3"></textarea>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onClick="hide('addAndamento')">Close</button>
-          <button type="submit" class="btn btn-primary" onClick="hide('addAndamento')">Save changes</button>
-        </div>
-      </div>
-      </form>
-    </div>
-  </div>
+  {% include 'modalAdicionarAndamento.html' %}
 
   <!-- Modal editar pendência --> 
-  <div class="modal fade modal-dialog modal-dialog-centered modal-fullscreen-sm-down" id="editPendencia" aria-labelledby="editPendenciaLabel"  aria-hidden="true">
-    <div class="modal-dialog">
-      <form method="POST">
-      <input type="hidden" id="idPendenciaOnEditPendencia" name="idPendencia">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="editPendenciaLabel">Editar Pendência</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick="hide('editPendencia')"></button>
-        </div>
-        <div class="modal-body">
-            <div class="mb-3">
-              <label for="editTipo" class="col-form-label">Tipo de Pendência:</label>
-              <select class="form-select" id="editTipo" name="tipo" aria-label="Default select example">
-                {% for tipo in tipos %}
-                  <option value="{{ tipo.id }}">{{ tipo.tipo }}</option>
-                {% endfor %}
-              </select>
-            </div>
-            <div class="mb-3">
-              <label for="editTitulo" class="col-form-label">Titulo:</label>
-              <input type="text" class="form-control" id="editTitulo" name="titulo">
-            </div>
-            <div class="mb-3">
-              <label for="editDescricao" class="col-form-label">Descrição:</label>
-              <input type="text" class="form-control" id="editDescricao" name="descricao">
-            </div>
-            <div class="mb-3">
-              <label for="editInicio" class="col-form-label">Data/hora inicio:</label>
-              <input type="datetime-local" class="form-control" id="editInicio" name="inicio">
-            </div>
-            <div class="mb-3">
-              <label for="editResponsavel" class="col-form-label">Responsável:</label>
-              <input type="text" class="form-control" id="editResponsavel" name="responsavel">
-            </div>
-            <div class="mb-3">
-              <label for="editPrevisao" class="col-form-label">Previsão:</label>
-              <input type="datetime-local" class="form-control" id="editPrevisao" name="previsao">
-            </div>
-            <div class="mb-3">
-              <label for="editTask" class="col-form-label">Task (url):</label>
-              <input type="text" class="form-control" id="editTask" name="task">
-            </div>      
-            <div class="mb-3">
-              <label for="editIncidente" class="col-form-label">Incidente (url):</label>
-              <input type="text" class="form-control" id="editIncidente" name="incidente">
-            </div>                                
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onClick="hide('editPendencia')">Close</button>
-          <button type="submit" name="edit" class="btn btn-primary" onClick="hide('editPendencia')">Save changes</button>
-        </div>
-      </div>
-      </form>
-    </div>
-  </div>
-
+  {% include 'modalEditarPendencia.html' %}
 
   <!-- Modal adicionar pendência --> 
-  <div class="modal fade modal-dialog modal-dialog-centered modal-fullscreen-sm-down" id="addPendencia" aria-labelledby="addAndamentoLabel"  aria-hidden="true">
-    <div class="modal-dialog">
-      <form method="POST">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="addAndamentoLabel">Adicionar Pendência</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick="hide('addPendencia')"></button>
-        </div>
-        <div class="modal-body">
-            <div class="mb-3">
-              <label for="tipo" class="col-form-label">Tipo de Pendência:</label>
-              <select class="form-select" id="tipo" name="tipo" aria-label="Default select example">
-                {% for tipo in tipos %}
-                  <option value="{{ tipo.id }}">{{ tipo.tipo }}</option>
-                {% endfor %}
-              </select>
-            </div>
-            <div class="mb-3">
-              <label for="titulo" class="col-form-label">Titulo:</label>
-              <input type="text" class="form-control" id="titulo" name="titulo">
-            </div>
-            <div class="mb-3">
-              <label for="descricao" class="col-form-label">Descrição:</label>
-              <input type="text" class="form-control" id="descricao" name="descricao">
-            </div>
-            <div class="mb-3">
-              <label for="inicio" class="col-form-label">Data/hora inicio:</label>
-              <input type="datetime-local" class="form-control" id="inicio" name="inicio">
-            </div>
-            <div class="mb-3">
-              <label for="responsavel" class="col-form-label">Responsável:</label>
-              <input type="text" class="form-control" id="responsavel" name="responsavel">
-            </div>
-            <div class="mb-3">
-              <label for="previsao" class="col-form-label">Previsão:</label>
-              <input type="datetime-local" class="form-control" id="previsao" name="previsao">
-            </div>
-            <div class="mb-3">
-              <label for="task" class="col-form-label">Task (url):</label>
-              <input type="text" class="form-control" id="task" name="task">
-            </div>      
-            <div class="mb-3">
-              <label for="incidente" class="col-form-label">Incidente (url):</label>
-              <input type="text" class="form-control" id="incidente" name="incidente">
-            </div>                                
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onClick="hide('addPendencia')">Close</button>
-          <button type="submit" name="new" class="btn btn-primary" onClick="hide('addPendencia')">Save changes</button>
-        </div>
-      </div>
-      </form>
-    </div>
-  </div>
+  {% include 'modalAdicionarPendencia.html' %}
 
   <!-- Modal fechar pendência --> 
-  <div class="modal fade modal-dialog modal-dialog-centered modal-fullscreen-sm-down" id="fecharPendencia" aria-labelledby="addAndamentoLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <form method="POST">
-      <input type="hidden" id="idPendenciaOnFecharPendencia" name="idPendencia">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="addAndamentoLabel">Concluir Pendência</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick="hide('fecharPendencia')"></button>
-        </div>
-        <div class="modal-body">
-            <div class="mb-3">
-              <label for="fim" class="col-form-label">Data/hora conclusão:</label>
-              <input type="datetime-local" class="form-control" id="fim" name="fim">
-            </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onClick="hide('fecharPendencia')">Close</button>
-          <button type="submit" class="btn btn-primary" onClick="hide('fecharPendencia')">Save changes</button>
-        </div>
-      </div>
-      </form>
-    </div>
-  </div>
+  {% include 'modalFecharPendencia.html' %}
+
+  <!-- Modal detalhes pendência --> 
+  {% include 'modalDetalhesPendencia.html' %}
+
 {% endblock %}

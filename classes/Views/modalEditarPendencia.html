@@ -1,0 +1,59 @@
+<div class="modal fade modal-dialog modal-dialog-centered modal-fullscreen-sm-down" id="editPendencia"
+    aria-labelledby="editPendenciaLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <form method="POST">
+            <input type="hidden" id="idPendenciaOnEditPendencia" name="idPendencia">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editPendenciaLabel">Editar Pendência</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                        onClick="hide('editPendencia')"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="editTipo" class="col-form-label">Tipo de Pendência:</label>
+                        <select class="form-select" id="editTipo" name="tipo" aria-label="Default select example">
+                            {% for tipo in tipos %}
+                            <option value="{{ tipo.id }}">{{ tipo.tipo }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="editTitulo" class="col-form-label">Titulo:</label>
+                        <input type="text" class="form-control" id="editTitulo" name="titulo">
+                    </div>
+                    <div class="mb-3">
+                        <label for="editDescricao" class="col-form-label">Descrição:</label>
+                        <input type="text" class="form-control" id="editDescricao" name="descricao">
+                    </div>
+                    <div class="mb-3">
+                        <label for="editInicio" class="col-form-label">Data/hora inicio:</label>
+                        <input type="datetime-local" class="form-control" id="editInicio" name="inicio">
+                    </div>
+                    <div class="mb-3">
+                        <label for="editResponsavel" class="col-form-label">Responsável:</label>
+                        <input type="text" class="form-control" id="editResponsavel" name="responsavel">
+                    </div>
+                    <div class="mb-3">
+                        <label for="editPrevisao" class="col-form-label">Previsão:</label>
+                        <input type="datetime-local" class="form-control" id="editPrevisao" name="previsao">
+                    </div>
+                    <div class="mb-3">
+                        <label for="editTask" class="col-form-label">Task (url):</label>
+                        <input type="text" class="form-control" id="editTask" name="task">
+                    </div>
+                    <div class="mb-3">
+                        <label for="editIncidente" class="col-form-label">Incidente (url):</label>
+                        <input type="text" class="form-control" id="editIncidente" name="incidente">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                        onClick="hide('editPendencia')">Close</button>
+                    <button type="submit" name="edit" class="btn btn-primary" onClick="hide('editPendencia')">Save
+                        changes</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

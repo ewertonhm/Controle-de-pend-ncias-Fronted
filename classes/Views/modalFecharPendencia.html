@@ -1,0 +1,27 @@
+<div class="modal fade modal-dialog modal-dialog-centered modal-fullscreen-sm-down" id="fecharPendencia"
+    aria-labelledby="addAndamentoLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <form method="POST">
+            <input type="hidden" id="idPendenciaOnFecharPendencia" name="idPendencia">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addAndamentoLabel">Concluir Pendência</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                        onClick="hide('fecharPendencia')"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="fim" class="col-form-label">Data/hora conclusão:</label>
+                        <input type="datetime-local" class="form-control" id="fim" name="fim">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                        onClick="hide('fecharPendencia')">Close</button>
+                    <button type="submit" class="btn btn-primary" onClick="hide('fecharPendencia')">Save
+                        changes</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
