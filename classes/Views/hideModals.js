@@ -5,6 +5,8 @@ function hideModals(){
     var fecharPendencia = document.getElementById("fecharPendencia");
     var detalhesPendencia = document.getElementById("pendenciaDetail");
 
+    console.log(detalhesPendencia);
+    
     addAndamento.hidden = true;
     editPendencia.hidden = true;
     addPendencia.hidden = true;

@@ -1,27 +1,82 @@
 <div class="modal fade modal-dialog modal-dialog-centered modal-fullscreen-sm-down" id="pendenciaDetail"
-    aria-labelledby="addAndamentoLabel" aria-hidden="true">
+    aria-labelledby="detailPendenciaLabel" aria-hidden="true"
+    style="display: none;">
     <div class="modal-dialog">
-        <form method="POST">
-            <input type="hidden" id="idPendenciaOnPendenciaDetail" name="idPendencia">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="addAndamentoLabel">Detalhes da Pendência</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
-                        onClick="hide('pendenciaDetail')"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="mb-3">
-                        <label for="fim" class="col-form-label">Data/hora conclusão:</label>
-                        <input type="datetime-local" class="form-control" id="fim" name="fim">
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
-                        onClick="hide('pendenciaDetail')">Close</button>
-                    <button type="submit" class="btn btn-primary" onClick="hide('pendenciaDetail')">Save
-                        changes</button>
+        <input type="hidden" id="idPendenciaOnPendenciaDetail" name="idPendencia">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h5 class="modal-title">Detalhes da pendência</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"onClick="hide('pendenciaDetail')"></button>
+            </div>
+
+            <div class="modal-body">
+                <div class="list-group">
+                    <a href="#" class="list-group-item list-group-item-action" aria-current="true">
+                        <div class="d-flex w-100 justify-content-between">
+                            <b><p class="mb-1">Pendência:</p></b>
+                        </div>
+                        <p class="mb-1" id="detailPendenciaLabel">Título:</p>
+                        <small id="detailPendenciaDetalhes">Descrição: </small>
+                        <p class="mb-1" id="detailPendenciaTipo">Tipo: </p>
+                        <p class="mb-1" id="detailPendenciaResponsavel">Responsável: </p>
+
+                    </a>
+                    <a href="#" class="list-group-item list-group-item-action">
+                        <p class="mb-1" id="pendenciaDetailInicio">Inicio: </p>
+                        <p class="mb-1" id="pendenciaDetailPrevisao">Previsão: </p>
+                        <p class="mb-1" id="pendenciaDetailConclusao">Conclusão: </p>
+                    </a>
+                    <a href="#" class="list-group-item list-group-item-action">
+                        <div class="d-flex w-100 justify-content-between">
+                            <b>
+                                <p class="mb-1">Abertura:</p>
+                            </b>
+                        </div>
+                        <p class="mb-1" id="detailPendenciaNomeAbertura">Nome: </p>
+                        <p class="mb-1" id="detailPendenciaEmailAbertura">Email: </p>
+                        <small class="text-muted" id="detailPendenciaHoraAbertura">Hora abertura: </small>
+                    </a>
+                    <a href="#" class="list-group-item list-group-item-action">
+                        <div class="d-flex w-100 justify-content-between">
+                            <b>
+                                <p class="mb-1">Fechamento:</p>                                             
+                            </b>
+                        </div>
+                        <p class="mb-1" id="detailPendenciaNomeFechamento">Nome: </p>
+                        <p class="mb-1" id="detailPendenciaEmailFechamento">Email: </p>
+                        <small class="text-muted" id="detailPendenciaHoraFechamento">Hora Fechamento: </small>
+                    </a>
+                    <a id="detailPendenciaIncidente" class="list-group-item list-group-item-action">
+                        <div class="d-flex w-100 justify-content-between">
+                            <b>
+                                <p class="mb-1">Incidente</p>
+                            </b>
+                        </div>
+                    </a>
+                    <a id="detailPendenciaTask" class="list-group-item list-group-item-action">
+                        <div class="d-flex w-100 justify-content-between">
+                            <b>
+                                <p class="mb-1">Task</p>
+                            </b>
+                        </div>
+                    </a>
+                    <a href="#" class="list-group-item list-group-item-action">
+                        <div class="d-flex w-100 justify-content-between">
+                            <b>
+                                <p class="mb-1">Andamentos:</p>
+                            </b>
+                        </div>
+                        {% include 'andamentosTableTwig.html' %}
+                    </a>
+
                 </div>
             </div>
-        </form>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onClick="hide('pendenciaDetail')">Close</button>
+                <!-- <button type="submit" class="btn btn-primary" onClick="hide('pendenciaDetail')">Save changes</button> -->
+            </div>
+        </div>
     </div>
 </div>

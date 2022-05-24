@@ -33,11 +33,14 @@ if (!isset($_SESSION['logado']) or $_SESSION['logado'] != true) {
         $p = $pendencias->get_all();
 
         foreach ($p as $pendencia) {
+            $pendencia->{'hora_abertura'} = Controller\Date::convertFromJsToHumanPluOne($pendencia->created_at);
+
             if ($pendencia->inicio != null) {
                 $pendencia->inicio = Controller\Date::convertFromJsToHuman($pendencia->inicio);
             }
             if ($pendencia->fim != null) {
                 $pendencia->fim = Controller\Date::convertFromJsToHuman($pendencia->fim);
+                $pendencia->{'hora_fechamento'} = Controller\Date::convertFromJsToHumanPluOne($pendencia->updated_at);
             }
             if ($pendencia->previsao != null) {
                 $isAtrasado = Controller\Date::checkIfIsAtrasado($pendencia->previsao);

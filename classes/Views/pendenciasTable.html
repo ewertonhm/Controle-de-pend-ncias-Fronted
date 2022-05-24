@@ -13,8 +13,7 @@
     </thead>
     <tbody>
         {% for pendencia in pendencias %}
-        <tr data-bs-toggle="modal" data-bs-target="#pendenciaDetail" data-bs-pendencia-id="{{pendencia.id}}"
-            onClick="unHide('pendenciaDetail')">
+        <tr data-bs-toggle="modal" data-bs-target="#pendenciaDetail" data-bs-pendencia-id="{{pendencia.id}}" onClick="populateDetailsPendencia('{{ pendencia.id }}')">
             <td>{{ pendencia.titulo }}</td>
             <td>{{ pendencia.tipoPendencia.tipo }}</td>
 
@@ -58,24 +57,7 @@
                     </a>
                     {% if pendencia.andamentos|length > 0 %}
                     <div id="{{pendencia.id}}_hidden" class="container-sm content__block">
-                        <table class="table table-sm table-responsive-sm table-dark table-striped">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Hora</th>
-                                    <th scope="col">Usuario</th>
-                                    <th scope="col">Andamento</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {% for andamento in pendencia.andamentos %}
-                                <tr>
-                                    <td>{{ andamento.hora }}</td>
-                                    <td>{{ andamento.user.email }}</td>
-                                    <td>{{ andamento.andamento }}</td>
-                                <tr>
-                                    {% endfor %}
-                            </tbody>
-                        </table>
+                        {% include 'andamentosTableTwig.html' %}
                     </div>
                     {% endif %}
 

@@ -1,0 +1,18 @@
+<table class="table table-sm table-responsive-sm table-dark table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Hora</th>
+            <th scope="col">Usuario</th>
+            <th scope="col">Andamento</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for andamento in pendencia.andamentos %}
+        <tr>
+            <td>{{ andamento.hora }}</td>
+            <td>{{ andamento.user.email }}</td>
+            <td>{{ andamento.andamento }}</td>
+        <tr>
+        {% endfor %}
+    </tbody>
+</table>
