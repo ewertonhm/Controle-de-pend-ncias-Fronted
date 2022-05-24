@@ -70,8 +70,10 @@ if (!isset($_SESSION['logado']) or $_SESSION['logado'] != true) {
 
         if (isset($_GET['page'])) {
             $p = $pp[(int)$_GET['page']];
+            $vars['page'] = (int) $_GET['page'];
         } else {
             $p = $pp[0];
+            $vars['page'] = 0;
         }
 
         foreach ($p as $pendencia) {

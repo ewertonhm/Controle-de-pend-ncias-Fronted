@@ -7,6 +7,10 @@
 
     <a class="align-right" href="logout.php">Logout</a>
     {% for i in pages-1..0 %}
-    <a class="align-right" href="index.php?page={{ i }}{% if historico=='active' %}&&historico=true{% endif %}">{{ i }}</a>
+    <a 
+        class="align-right {% if i == page %}active{% endif %}" 
+        href="index.php?page={{ i }}{% if historico=='active' %}&&historico=true{% endif %}
+        ">{{ i }}
+    </a>
     {% endfor %}
 </div>
