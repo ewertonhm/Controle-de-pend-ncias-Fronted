@@ -55,3 +55,15 @@
    background-color: #141414;
    color: white;
 }
+
+.vl {
+   border-left: 1px solid #323539;
+}
+
+.tl {
+   border-top: 1px solid #323539;
+}
+
+.bl {
+   border-bottom: 1px solid #323539;
+}
