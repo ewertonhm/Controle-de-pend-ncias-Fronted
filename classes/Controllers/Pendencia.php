@@ -72,7 +72,6 @@ class Pendencia
             "incidente" => $incidente
         ];
         $pendencias = $this->api->CallAPI("PATCH", "/pendencias", $this->token, $data);
-        // talvez não funcione, falta testar o patch
         return $pendencias;
     }
     public function fecharPendencia($id, $hora)
