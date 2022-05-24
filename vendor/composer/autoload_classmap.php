@@ -12,6 +12,7 @@ return array(
     'Controller\\Api' => $baseDir . '/classes/Controllers/Api.php',
     'Controller\\Date' => $baseDir . '/classes/Controllers/Date.php',
     'Controller\\Pendencia' => $baseDir . '/classes/Controllers/Pendencia.php',
+    'Controller\\Sort' => $baseDir . '/classes/Controllers/Sort.php',
     'Controller\\TipoPendencia' => $baseDir . '/classes/Controllers/TipoPendencia.php',
     'Controller\\Usuario' => $baseDir . '/classes/Controllers/Usuario.php',
     'PhpToken' => $vendorDir . '/symfony/polyfill-php80/Resources/stubs/PhpToken.php',

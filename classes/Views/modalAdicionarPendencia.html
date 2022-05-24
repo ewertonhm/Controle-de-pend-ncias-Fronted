@@ -19,7 +19,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="titulo" class="col-form-label">Titulo:</label>
-                        <input type="text" class="form-control" id="titulo" name="titulo">
+                        <input type="text" class="form-control" id="titulo" name="titulo" required>
                     </div>
                     <div class="mb-3">
                         <label for="descricao" class="col-form-label">Descrição:</label>
@@ -27,7 +27,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="inicio" class="col-form-label">Data/hora inicio:</label>
-                        <input type="datetime-local" class="form-control" id="inicio" name="inicio">
+                        <input type="datetime-local" class="form-control" id="inicio" name="inicio" required>
                     </div>
                     <div class="mb-3">
                         <label for="responsavel" class="col-form-label">Responsável:</label>
@@ -35,7 +35,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="previsao" class="col-form-label">Previsão:</label>
-                        <input type="datetime-local" class="form-control" id="previsao" name="previsao">
+                        <input type="datetime-local" class="form-control" id="previsao" name="previsao" required>
                     </div>
                     <div class="mb-3">
                         <label for="task" class="col-form-label">Task (url):</label>
@@ -49,7 +49,7 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
                         onClick="hide('addPendencia')">Close</button>
-                    <button type="submit" name="new" class="btn btn-primary" onClick="hide('addPendencia')">Save
+                    <button type="submit" name="new" class="btn btn-primary">Save
                         changes</button>
                 </div>
             </div>

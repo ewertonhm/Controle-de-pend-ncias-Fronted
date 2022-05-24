@@ -57,8 +57,10 @@ if (!isset($_SESSION['logado']) or $_SESSION['logado'] != true) {
             }
         }
         $tipos = new \Controller\TipoPendencia($_SESSION['usuario']->token);
+        $sorting = new Controller\Sort();
 
-        $vars['pendencias'] = $p;
+        $vars['pendencias'] = $sorting->sort_by_inicio($p);
+
         $vars['tipos'] = $tipos->get_all();
 
         //dump($vars);
