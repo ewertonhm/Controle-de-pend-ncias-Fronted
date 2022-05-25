@@ -1,4 +1,4 @@
-<div class="modal fade modal-dialog modal-dialog-centered modal-fullscreen-sm-down" id="editPendencia"
+<div class="modal modal-xl fade modal-dialog modal-dialog-centered modal-fullscreen-sm-down" id="editPendencia"
     aria-labelledby="editPendenciaLabel" aria-hidden="true" style="display: none;">
     <div class="modal-dialog">
         <form method="POST">
@@ -10,41 +10,69 @@
                         onClick="hide('editPendencia')"></button>
                 </div>
                 <div class="modal-body">
-                    <div class="mb-3">
-                        <label for="editTipo" class="col-form-label">Tipo de Pendência:</label>
-                        <select class="form-select" id="editTipo" name="tipo" aria-label="Default select example">
-                            {% for tipo in tipos %}
-                            <option value="{{ tipo.id }}">{{ tipo.tipo }}</option>
-                            {% endfor %}
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <label for="editTitulo" class="col-form-label">Titulo:</label>
-                        <input type="text" class="form-control" id="editTitulo" name="titulo">
-                    </div>
-                    <div class="mb-3">
-                        <label for="editDescricao" class="col-form-label">Descrição:</label>
-                        <input type="text" class="form-control" id="editDescricao" name="descricao">
-                    </div>
-                    <div class="mb-3">
-                        <label for="editInicio" class="col-form-label">Data/hora inicio:</label>
-                        <input type="datetime-local" class="form-control" id="editInicio" name="inicio">
-                    </div>
-                    <div class="mb-3">
-                        <label for="editResponsavel" class="col-form-label">Responsável:</label>
-                        <input type="text" class="form-control" id="editResponsavel" name="responsavel">
-                    </div>
-                    <div class="mb-3">
-                        <label for="editPrevisao" class="col-form-label">Previsão:</label>
-                        <input type="datetime-local" class="form-control" id="editPrevisao" name="previsao">
-                    </div>
-                    <div class="mb-3">
-                        <label for="editTask" class="col-form-label">Task (url):</label>
-                        <input type="text" class="form-control" id="editTask" name="task">
-                    </div>
-                    <div class="mb-3">
-                        <label for="editIncidente" class="col-form-label">Incidente (url):</label>
-                        <input type="text" class="form-control" id="editIncidente" name="incidente">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col">
+                                <div class="mb-3">
+                                    <label for="editTitulo" class="col-form-label">Titulo:</label>
+                                    <input type="text" class="form-control" id="editTitulo" name="titulo">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="mb-3">
+                                    <label for="editDescricao" class="col-form-label">Descrição:</label>
+                                    <input type="text" class="form-control" id="editDescricao" name="descricao">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="mb-3">
+                                    <label for="editTipo" class="col-form-label">Tipo de Pendência:</label>
+                                    <select class="form-select" id="editTipo" name="tipo" aria-label="Default select example">
+                                        {% for tipo in tipos %}
+                                        <option value="{{ tipo.id }}">{{ tipo.tipo }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>    
+                            </div>
+                            <div class="col">
+                                <div class="mb-3">
+                                    <label for="editResponsavel" class="col-form-label">Responsável:</label>
+                                    <input type="text" class="form-control" id="editResponsavel" name="responsavel">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="mb-3">
+                                    <label for="editInicio" class="col-form-label">Data/hora inicio:</label>
+                                    <input type="datetime-local" class="form-control" id="editInicio" name="inicio">
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="mb-3">
+                                    <label for="editPrevisao" class="col-form-label">Previsão:</label>
+                                    <input type="datetime-local" class="form-control" id="editPrevisao" name="previsao">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="mb-3">
+                                    <label for="editTask" class="col-form-label">Task (url):</label>
+                                    <input type="text" class="form-control" id="editTask" name="task">
+                                </div>    
+                            </div>
+                            <div class="col">
+                                <div class="mb-3">
+                                    <label for="editIncidente" class="col-form-label">Incidente (url):</label>
+                                    <input type="text" class="form-control" id="editIncidente" name="incidente">
+                                </div>        
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">
