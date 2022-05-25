@@ -1,17 +1,18 @@
 <div class="bottombar tl">
     <a href="index.php" {% if index=='active' %}class="active" {% endif %}>Em andamento</a>
-    <a href="index.php?historico=true" {% if historico=='active' %}class="active" {% endif %}>Concluídos</a>
+    <a href="index.php?concluidos=true" {% if concluidos=='active' %}class="active" {% endif %}>Concluídos</a>
+    <a href="index.php?all=true" {% if all=='active' %}class="active" {% endif %}>Todos</a>
 
-    <a href="tipos.php" {% if tipos=='active' %}class="active" {% endif %}>Tipos de Incidente</a>
-    <a href="usuarios.php" {% if usuarios=='active' %}class="active" {% endif %}>Usuários</a>
+
 
     <a class="align-right vl" href="logout.php">Logout</a>
+    <a class="align-right vl" href="tipos.php" {% if tipos=='active' %}class="active" {% endif %}>Tipos de Incidente</a>
+    <a class="align-right vl" href="usuarios.php" {% if usuarios=='active' %}class="active" {% endif %}>Usuários</a>
 
     {% for i in pages-1..0 %}
     <a 
         class="align-right {% if i == page %}active{% endif %}" 
-        href="index.php?page={{ i }}{% if historico=='active' %}&&historico=true{% endif %}
-        ">{{ i }}
+        href="index.php?page={{ i }}{% if historico=='active' %}&&historico=true{% endif %}{% if all=='active' %}&&all=true{% endif %}">{{ i }}
     </a>
     {% endfor %}
 </div>

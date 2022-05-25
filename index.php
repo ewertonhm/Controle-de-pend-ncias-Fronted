@@ -48,17 +48,20 @@ if (!isset($_SESSION['logado']) or $_SESSION['logado'] != true) {
         $p = [];
         // TODO: filtrar direto no backend futuramente
         // Quando tiver muitas entradas no banco essa etapa pode começar a ficar muito lenta.
-        if (!isset($_GET['historico'])) {
-            $vars['index'] = 'active';
+        if (isset($_GET['concluidos'])) {
+            $vars['concluidos'] = 'active';
             foreach ($raw_pendencias as $pendencia) {
-                if ($pendencia->fim == null) {
+                if ($pendencia->fim != null) {
                     $p[] = $pendencia;
                 }
             }
+        } elseif (isset($_GET['all'])) {
+            $vars['all'] = 'active';
+            $p = $raw_pendencias;
         } else {
-            $vars['historico'] = 'active';
+            $vars['index'] = 'active';
             foreach ($raw_pendencias as $pendencia) {
-                if ($pendencia->fim != null) {
+                if ($pendencia->fim == null) {
                     $p[] = $pendencia;
                 }
             }

@@ -5,7 +5,11 @@
             <th scope="col">Tipo</th>
             <th scope="col">Responsável</th>
             <th scope="col">Inicio</th>
-            <th scope="col">Previsão</th>
+            {% if historico %}
+                <th scope="col">Fim</th>
+            {% else %}
+                <th scope="col">Previsão</th>
+            {% endif %}
             <th scope="col">Task</th> <!-- botão -->
             <th scope="col">Incidente</th> <!-- botão -->
             <th scope="col"></th> <!-- hover text (last) / on click (add) -->
@@ -42,26 +46,27 @@
                 {% endif %}
             </td>
             <td>
-                <div>
-                    <a data-bs-toggle="modal" data-bs-target="#addAndamento" data-bs-pendencia-id="{{pendencia.id}}"
-                        onClick="unHide('addAndamento')">
-                        <i class="bi bi-chat-left-text" id="{{pendencia.id}}" rel="tooltip" title="Andamentos"></i>
-                    </a>
-                    <a data-bs-toggle="modal" data-bs-target="#editPendencia" data-bs-pendencia-id="{{pendencia.id}}"
-                        onClick="prePopulateForm('{{pendencia.id}}')">
-                        <i class="bi bi-pencil-square" rel="tooltip" title="Editar pendência"></i>
-                    </a>
-                    <a data-bs-toggle="modal" data-bs-target="#fecharPendencia" data-bs-pendencia-id="{{pendencia.id}}"
-                        onClick="unHide('fecharPendencia')">
-                        <i class="bi bi-check2-square" rel="tooltip" title="Concluir pendência"></i>
-                    </a>
-                    {% if pendencia.andamentos|length > 0 %}
-                    <div id="{{pendencia.id}}_hidden" class="container-sm content__block">
-                        {% include 'andamentosTable.html' %}
+                {% if not historico %}
+                    <div>
+                        <a data-bs-toggle="modal" data-bs-target="#addAndamento" data-bs-pendencia-id="{{pendencia.id}}"
+                            onClick="unHide('addAndamento')">
+                            <i class="bi bi-chat-left-text" id="{{pendencia.id}}" rel="tooltip" title="Andamentos"></i>
+                        </a>
+                        <a data-bs-toggle="modal" data-bs-target="#editPendencia" data-bs-pendencia-id="{{pendencia.id}}"
+                            onClick="prePopulateForm('{{pendencia.id}}')">
+                            <i class="bi bi-pencil-square" rel="tooltip" title="Editar pendência"></i>
+                        </a>
+                        <a data-bs-toggle="modal" data-bs-target="#fecharPendencia" data-bs-pendencia-id="{{pendencia.id}}"
+                            onClick="unHide('fecharPendencia')">
+                            <i class="bi bi-check2-square" rel="tooltip" title="Concluir pendência"></i>
+                        </a>
+                        {% if pendencia.andamentos|length > 0 %}
+                        <div id="{{pendencia.id}}_hidden" class="container-sm content__block">
+                            {% include 'andamentosTable.html' %}
+                        </div>
+                        {% endif %}
                     </div>
-                    {% endif %}
-
-                </div>
+                {% endif %}
             </td>
         </tr>
         {% endfor %}
