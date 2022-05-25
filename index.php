@@ -40,27 +40,28 @@ if (!isset($_SESSION['logado']) or $_SESSION['logado'] != true) {
 
         // if no post:
         // PENDENCIAS
-        $p = $pendencias->get_all();
+        $raw_pendencias = $pendencias->get_all();
         // sort
-        $p = $sorting->sort_by_inicio($p);
+        $raw_pendencias = $sorting->sort_by_inicio($raw_pendencias);
 
 
-
-
+        $p = [];
+        // TODO: filtrar direto no backend futuramente
+        // Quando tiver muitas entradas no banco essa etapa pode começar a ficar muito lenta.
         if (!isset($_GET['historico'])) {
             $vars['index'] = 'active';
-            $counter = 0;
-            while ($counter < count($p)) {
-                if ($p[$counter]->fim != null) {
-                    //dump($p);
-                    unset($p[$counter]);
+            foreach ($raw_pendencias as $pendencia) {
+                if ($pendencia->fim == null) {
+                    $p[] = $pendencia;
                 }
-
-
-                $counter++;
             }
         } else {
             $vars['historico'] = 'active';
+            foreach ($raw_pendencias as $pendencia) {
+                if ($pendencia->fim != null) {
+                    $p[] = $pendencia;
+                }
+            }
         }
 
         // Add pagination / create array_chunks
