@@ -20,33 +20,17 @@
     {% endblock %}
 </head>
 <body style="background-color:#212529">
-{% block navbar %}
-    {% if not no_navbar %}
-        {% include 'navbar.html' %}
-    {% endif %}
-{% endblock %}
 
+{% block navbar %}{% endblock %}
 
 <div class="container-fluid">
-{% block content %}
-    <!-- Conteúdo da pagina
-{% endblock %}
+{% block content %}{% endblock %}
 </div>
 
-{% block modal %}
-{% endblock %}
-
-
+{% block modal %}{% endblock %}
 <script src="vendor/twbs/bootstrap/dist/js/bootstrap.js"></script>
 <script src="js/custom.js"></script>
-{% block scripts %}
-
-
-
-{% endblock %}
-
-{% block bottombar %}
-    {% include 'bottombar.html' %}
-{% endblock %}
+{% block scripts %}{% endblock %}
+{% block bottombar %}{% endblock %}
 </body>
 </html>

@@ -46,7 +46,7 @@
                 {% endif %}
             </td>
             <td>
-                {% if not historico %}
+                {% if not pendencia.fim %}
                     <div>
                         <a data-bs-toggle="modal" data-bs-target="#addAndamento" data-bs-pendencia-id="{{pendencia.id}}"
                             onClick="unHide('addAndamento')">
