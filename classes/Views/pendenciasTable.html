@@ -50,7 +50,7 @@
                     <div>
                         <a data-bs-toggle="modal" data-bs-target="#addAndamento" data-bs-pendencia-id="{{pendencia.id}}"
                             onClick="unHide('addAndamento')">
-                            <i class="bi bi-chat-left-text" id="{{pendencia.id}}" rel="tooltip" title="Andamentos"></i>
+                            <i {% if not pendencia.andamentos %}style = "color: rgba(184, 184, 184, 0.658);"{% endif %} class="bi bi-chat-left-text" id="{{pendencia.id}}" rel="tooltip" title="Andamentos"></i>
                         </a>
                         <a data-bs-toggle="modal" data-bs-target="#editPendencia" data-bs-pendencia-id="{{pendencia.id}}"
                             onClick="prePopulateForm('{{pendencia.id}}')">
