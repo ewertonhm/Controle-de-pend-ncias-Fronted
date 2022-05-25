@@ -1,5 +1,5 @@
 :root {
-   --bs-body-font-size:0.82rem;
+   --bs-body-font-size:0.88rem;
    /*--bs-body-font-family: var(--bs-font-monospace);*/
    --bs-body-font-family: Arial,
       Tahoma,
@@ -21,6 +21,7 @@
    right: 0;
    margin-left: auto;
    margin-right: auto;
+   overflow-y: auto;
 }
 
 /* Place the navbar at the bottom of the page, and make it stick */

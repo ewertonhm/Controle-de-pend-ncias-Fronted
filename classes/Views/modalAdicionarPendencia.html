@@ -1,4 +1,4 @@
-<div class="modal fade modal-dialog modal-dialog-centered modal-fullscreen-sm-down" id="addPendencia"
+<div class="modal modal-xl fade modal-dialog modal-dialog-centered modal-fullscreen-sm-down" id="addPendencia"
     aria-labelledby="addAndamentoLabel" aria-hidden="true" style="display: none;">
     <div class="modal-dialog">
         <form method="POST">
@@ -9,41 +9,69 @@
                         onClick="hide('addPendencia')"></button>
                 </div>
                 <div class="modal-body">
-                    <div class="mb-3">
-                        <label for="tipo" class="col-form-label">Tipo de Pendência:</label>
-                        <select class="form-select" id="tipo" name="tipo" aria-label="Default select example">
-                            {% for tipo in tipos %}
-                            <option value="{{ tipo.id }}">{{ tipo.tipo }}</option>
-                            {% endfor %}
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <label for="titulo" class="col-form-label">Titulo:</label>
-                        <input type="text" class="form-control" id="titulo" name="titulo" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="descricao" class="col-form-label">Descrição:</label>
-                        <input type="text" class="form-control" id="descricao" name="descricao">
-                    </div>
-                    <div class="mb-3">
-                        <label for="inicio" class="col-form-label">Data/hora inicio:</label>
-                        <input type="datetime-local" class="form-control" id="inicio" name="inicio" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="responsavel" class="col-form-label">Responsável:</label>
-                        <input type="text" class="form-control" id="responsavel" name="responsavel">
-                    </div>
-                    <div class="mb-3">
-                        <label for="previsao" class="col-form-label">Previsão:</label>
-                        <input type="datetime-local" class="form-control" id="previsao" name="previsao" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="task" class="col-form-label">Task (url):</label>
-                        <input type="text" class="form-control" id="task" name="task">
-                    </div>
-                    <div class="mb-3">
-                        <label for="incidente" class="col-form-label">Incidente (url):</label>
-                        <input type="text" class="form-control" id="incidente" name="incidente">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col">
+                                <div class="mb-3">
+                                    <label for="titulo" class="col-form-label">Titulo:</label>
+                                    <input type="text" class="form-control" id="titulo" name="titulo" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="mb-3">
+                                    <label for="descricao" class="col-form-label">Descrição:</label>
+                                    <input type="text" class="form-control" id="descricao" name="descricao">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="mb-3">
+                                    <label for="tipo" class="col-form-label">Tipo de Pendência:</label>
+                                    <select class="form-select" id="tipo" name="tipo" aria-label="Default select example">
+                                        {% for tipo in tipos %}
+                                        <option value="{{ tipo.id }}">{{ tipo.tipo }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="mb-3">
+                                    <label for="responsavel" class="col-form-label">Responsável:</label>
+                                    <input type="text" class="form-control" id="responsavel" name="responsavel">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="mb-3">
+                                    <label for="inicio" class="col-form-label">Data/hora inicio:</label>
+                                    <input type="datetime-local" class="form-control" id="inicio" name="inicio" required>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="mb-3">
+                                    <label for="previsao" class="col-form-label">Previsão:</label>
+                                    <input type="datetime-local" class="form-control" id="previsao" name="previsao" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="mb-3">
+                                    <label for="task" class="col-form-label">Task (url):</label>
+                                    <input type="text" class="form-control" id="task" name="task">
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="mb-3">
+                                    <label for="incidente" class="col-form-label">Incidente (url):</label>
+                                    <input type="text" class="form-control" id="incidente" name="incidente">
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">
