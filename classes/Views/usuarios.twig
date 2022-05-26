@@ -1,6 +1,23 @@
 {% extends "base.twig" %}
 
 {% block content %}
+<div class="container-fluid">
+<br>
+  <div class="row">
+
+    <div class="col">
+        <h4 style="color: white;">Cadastrar novo tipo:</h4>
+        {% include 'formTipos.html' %}
+    </div>
+        <div class="col"></div>
+
+    <div class="col">
+        <h4 style="color: white;">Tipos cadastrados:</h4>
+
+        {% include 'tabelaTipos.html' %}
+    </div>
+  </div>
+</div>
 
 {% endblock %}
 
@@ -10,6 +27,10 @@
 
 {% block modal %}
 
+{% endblock %}
+
+{% block navbar %}
+  {% include 'navbarIndex.html' %}
 {% endblock %}
 
 {% block bottombar %}

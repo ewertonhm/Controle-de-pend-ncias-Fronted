@@ -17,9 +17,9 @@ if (!isset($_SESSION['logado']) or $_SESSION['logado'] != true) {
         header('location: logout.php');
     } else {
 
-        $tipos = new \Controller\TipoPendencia($_SESSION['usuario']->token);
+        $usuarios = new \Controller\Usuario($_SESSION['usuario']->token);
 
-        $vars['tipos'] = $tipos->get_all();
+        //$vars['usuarios'] = $usuarios->get_all();
 
         //dump($vars);
 

@@ -1,0 +1,21 @@
+<table class="table table-sm table-responsive-sm table-dark table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Tipo</th>
+            <th scope="col">Severidade</th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for tipo in tipos %}
+            <tr>
+                <td>{{ tipo.tipo }}</td>
+                <td>{{ tipo.severidade }}</td>
+                <td>
+                    <a href="tipos.php?editar={{tipo.id}}"><i class="bi bi-pencil-square" rel="tooltip" title="Editar Tipo"></i></a>
+                    <a href="tipos.php?deletar={{tipo.id}}"><i class="bi bi-trash" rel="tooltip" title="Deletar Tipo"></i></a>
+                </td>
+            <tr>
+        {% endfor %}
+    </tbody>
+</table>
