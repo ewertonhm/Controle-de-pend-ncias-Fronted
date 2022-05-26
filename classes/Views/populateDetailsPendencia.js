@@ -48,8 +48,14 @@ function populateDetailsPendencia(id){
             let incidente = document.getElementById("detailPendenciaIncidente");
             incidente.href = pendencias[i].incidente;
             
+            let incidenteText = document.getElementById("detailPendenciaIncidenteText");
+            incidenteText.innerHTML = "Incidente: " + pendencias[i].incidente;
+
             let task = document.getElementById("detailPendenciaTask");
             task.href = pendencias[i].task;
+
+            let taskText = document.getElementById("detailPendenciaTaskText");
+            taskText.innerHTML = "Task: " + pendencias[i].task;
 
             // andamentos
             let table = document.getElementById("andamentosTable");
