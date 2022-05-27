@@ -106,12 +106,12 @@ if (!isset($_SESSION['logado']) or $_SESSION['logado'] != true) {
                     }
                 }
             }
-            $tipos = new \Controller\TipoPendencia($_SESSION['usuario']->token);
 
             $vars['pendencias'] = $p;
         }
 
 
+        $tipos = new \Controller\TipoPendencia($_SESSION['usuario']->token);
 
         $vars['tipos'] = $tipos->get_all();
 
