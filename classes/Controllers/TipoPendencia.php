@@ -43,4 +43,9 @@ class TipoPendencia
         $tipo = $this->api->CallAPI("PATCH", "/tipo-pendencias/$id", $this->token, $data);
         return $tipo;
     }
+    public function deleteTipoPendencia($id)
+    {
+        $pendencias = $this->api->CallAPI("DELETE", "/tipo-pendencias/$id", $this->token);
+        return $pendencias;
+    }
 }

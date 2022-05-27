@@ -20,6 +20,13 @@ if (!isset($_SESSION['logado']) or $_SESSION['logado'] != true) {
 
         if (isset($_POST['novo'])) {
             $tipo = $tipos->addTipoPendencia($_POST['tipo'], (int)$_POST['severidade']);
+        } elseif (isset($_GET['editar'])) {
+            $tipo = $tipos->findOne($_GET['editar']);
+            $vars['editar'] = $tipo;
+        } elseif (isset($_POST['editar'])) {
+            $tipos->editeTipoPendencia($_POST['id'], $_POST['tipo'], (int)$_POST['severidade']);
+        } elseif (isset($_GET['deletar'])) {
+            dump($tipos->deleteTipoPendencia($_GET['deletar']));
         }
 
 

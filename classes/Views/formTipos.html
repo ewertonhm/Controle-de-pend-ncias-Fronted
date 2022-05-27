@@ -1,16 +1,20 @@
 <form method="post" action="tipos.php">
+    {% if editar %}
+        <input type="hidden" name="id" value="{{ editar.id }}">
+    {% endif %}
+
     <div class="mb-3">
         <label style="color: white;" for="floatingInput" class="form-label">Tipo de incidente</label>
-        <input type="text" class="form-control" id="floatingInput" placeholder="Tipo de incidente" name="tipo">
+        <input type="text" class="form-control" id="floatingInput" placeholder="Tipo de incidente" name="tipo" {% if editar %}value="{{ editar.tipo }}"{% endif %}>
     </div>
     <div class="mb-3">
         <label style="color: white;" for="floatingPassword" class="form-label">Severidade</label>
-        <input type="number" class="form-control" id="floatingPassword" placeholder="Severidade " name="severidade">
+        <input type="number" class="form-control" id="floatingPassword" placeholder="Severidade " name="severidade" {% if editar %}value="{{ editar.severidade }}"{% endif %}>
         <div id="emailHelp" class="form-text" style="color:rgb(218, 218, 218);">Número (0-7), quanto menor maior a severidade</div>
     </div>
 
     <div>
         <br>
-        <button class="btn btn-secondary" type="submit" name="novo">Criar</button>
+        <button class="btn btn-secondary" type="submit" {% if editar %}name="editar"{% else %}name="novo"{% endif %}>Salvar</button>
     </div>
 </form>
