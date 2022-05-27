@@ -59,7 +59,6 @@ class Api
 
     function CallAPI($method, $url, $bearer_token, $data = false)
     {
-
         $url = $this->base_url . $url;
 
         $curl = curl_init();

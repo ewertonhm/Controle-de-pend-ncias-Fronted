@@ -1,0 +1,42 @@
+<form method="post" action="usuarios.php">
+    {% if editar %}
+        <input type="hidden" name="id" value="{{ editar.id }}">
+    {% endif %}
+
+    <div class="mb-3">
+        <label style="color: white;" for="floatingInput" class="form-label">Nome</label>
+        <input type="text" class="form-control" id="floatingInput" name="nome" {% if editar %}value="{{ editar.nome }}"{% endif %}>
+    </div>
+    <div class="mb-3">
+        <label style="color: white;" for="floatingInput" class="form-label">Sobrenome</label>
+        <input type="text" class="form-control" id="floatingInput" name="sobrenome" {% if editar %}value="{{ editar.nome }}" {% endif %}>
+    </div>
+    <div class="mb-3">
+        <label style="color: white;" for="floatingInput" class="form-label">Email</label>
+        <input type="email" class="form-control" id="floatingInput" name="email" {% if editar %}value="{{ editar.email }}" {% endif %}>
+    </div>
+    {% if editar %}
+        <div class="mb-3">
+            <label style="color: white;" for="floatingInput" class="form-label">Usuario Bemtevi</label>
+            <input type="text" class="form-control" id="floatingInput" name="btv_usuario" value="{{ editar.btv_usuario }}">
+        </div>
+        <div class="mb-3">
+            <label style="color: white;" for="floatingInput" class="form-label">Senha Bemtevi</label>
+            <input type="text" class="form-control" id="floatingInput" name="btv_senha" value="{{ editar.btv_senha }}">
+        </div>
+        <div class="mb-3">
+            <label style="color: white;" for="floatingInput" class="form-label">ID Bitrix</label>
+            <input type="text" class="form-control" id="floatingInput" name="id_bitrix" value="{{ editar.id_bitrix }}">
+        </div>
+    {% else %}
+        <div class="mb-3">
+            <label style="color: white;" for="floatingInput" class="form-label">Senha</label>
+            <input type="password" class="form-control" id="floatingInput" name="senha">
+        </div>
+    {% endif %}
+
+    <div>
+        <br>
+        <button class="btn btn-secondary" type="submit" {% if editar %}name="editar"{% else %}name="novo"{% endif %}>Salvar</button>
+    </div>
+</form>

@@ -1,0 +1,40 @@
+<table class="table table-sm table-responsive-sm table-dark table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Nome</th>
+            <th scope="col">Sobrenome</th>
+            <th scope="col">Email</th>
+            <th scope="col">Usuário Bemtevi</th>
+            <th scope="col">ID Bitrix</th>
+            <th scope="col">Ativo</th>
+            <th scope="col"></th>
+
+        </tr>
+    </thead>
+    <tbody>
+        {% for usuario in usuarios %}
+        <tr>
+            <td>{{ usuario.nome }}</td>
+            <td>{{ usuario.sobrenome }}</td>
+            <td>{{ usuario.email }}</td>
+            <td>{{ usuario.btv_usuario }}</td>
+            <td>{{ usuario.id_bitrix }}</td>
+            <td>{{ usuario.ativo }}</td>
+            <td>
+                <a href="usuarios.php?editar={{usuario.id}}"><i class="bi bi-pencil-square" rel="tooltip"
+                        title="Editar Usuario"></i></a>
+                    {% if usuario.ativo == 1 %}
+                    <a href="usuarios.php?desativar={{usuario.id}}">
+                        <i class="bi bi-person-x" rel="tooltip" title="Desativar Usuário"></i>
+                    </a>
+                    {% else %}
+                    <a href="usuarios.php?ativar={{usuario.id}}">
+                        <i class="bi bi-person-check" rel="tooltip" title="Ativar Usuário"></i>
+                    </a>
+                    {% endif %}
+            </td>
+        <tr>
+            {% endfor %}
+    </tbody>
+
+</table>
