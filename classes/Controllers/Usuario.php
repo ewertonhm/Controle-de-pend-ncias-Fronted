@@ -37,7 +37,7 @@ class Usuario
         $data = array(
             "oldToken" => $this->token
         );
-        $token = $this->api->CallAPI_Unauthorized("PUT", "/token/refresh", $data);
+        $token = $this->api->CallAPI_Unauthorized("POST", "/token/refresh", $data);
 
         if (is_object($token) && \property_exists($token, "data")) {
             if (\property_exists($token->data, "acess_token")) {
