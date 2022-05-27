@@ -11,8 +11,8 @@
             </div>
 
             <div class="modal-body">
-                <div class="list-group">
-                    <a href="#" class="list-group-item list-group-item-action" aria-current="true">
+                <ul class="list-group">
+                    <li href="#" class="list-group-item list-group-item-action" aria-current="true">
                         <div class="d-flex w-100 justify-content-between">
                             <b>
                                 <p class="mb-1">Pendência:</p>
@@ -31,8 +31,8 @@
                                 <p class="mb-1" id="pendenciaDetailConclusao">Conclusão: </p>
                             </div>
                         </div>
-                    </a>
-                    <a href="#" class="list-group-item list-group-item-action">
+                    </li>
+                    <li href="#" class="list-group-item list-group-item-action">
                         <div class="row">
                             <div class="col">
                                 <div class="d-flex w-100 justify-content-between">
@@ -55,31 +55,31 @@
                                 <small class="text-muted" id="detailPendenciaHoraFechamento">Hora Fechamento: </small>
                             </div>
                         </div>
-                    </a>
-                    <a id="detailPendenciaIncidente" class="list-group-item list-group-item-action">
+                    </li>
+                    <li id="detailPendenciaIncidente" class="list-group-item list-group-item-action">
                         <div class="d-flex w-100 justify-content-between">
                             <b>
-                                <small class="mb-1" id="detailPendenciaIncidenteText">Incidente: </small>
+                                <small class="mb-1" id="detailPendenciaIncidenteText">Incidente:</small>
                             </b>
                         </div>
-                    </a>
-                    <a id="detailPendenciaTask" class="list-group-item list-group-item-action">
+                    </li>
+                    <li id="detailPendenciaTask" class="list-group-item list-group-item-action">
                         <div class="d-flex w-100 justify-content-between">
                             <b>
                                 <small class="mb-1" id="detailPendenciaTaskText">Task: </small>
                             </b>
                         </div>
-                    </a>
-                    <a href="#" class="list-group-item list-group-item-action">
+                    </li>
+                    <li href="#" class="list-group-item list-group-item-action">
                         <div class="d-flex w-100 justify-content-between">
                             <b>
                                 <p class="mb-1">Andamentos:</p>
                             </b>
                         </div>
                         {% include 'andamentosTableDetalhePendencia.html' %}
-                    </a>
+                    </li>
 
-                </div>
+                </ul>
             </div>
 
             <div class="modal-footer">
