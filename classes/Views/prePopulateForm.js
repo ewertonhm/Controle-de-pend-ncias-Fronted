@@ -3,11 +3,16 @@ function prePopulateForm(id){
     
     for(var i in pendencias){
         if(pendencias[i].id == id){
+
             let tipo = document.getElementById("editTipo");
             tipo.value = pendencias[i].tipo;
 
             let titulo = document.getElementById("editTitulo");
-            titulo.value = pendencias[i].titulo;
+            let tituloText = pendencias[i].titulo;
+            tituloText = tituloText.replace("&lt;","<")
+            tituloText = tituloText.replace("&gt;",">")
+
+            titulo.value = tituloText;
 
             let descricao = document.getElementById("editDescricao");
             descricao.value = pendencias[i].descricao;
