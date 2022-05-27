@@ -16,8 +16,12 @@ if (!isset($_SESSION['logado']) or $_SESSION['logado'] != true) {
     if (!$_SESSION['usuario']->refresh_token()) {
         header('location: logout.php');
     } else {
-
         $tipos = new \Controller\TipoPendencia($_SESSION['usuario']->token);
+
+        if (isset($_POST['novo'])) {
+            $tipo = $tipos->addTipoPendencia($_POST['tipo'], (int)$_POST['severidade']);
+        }
+
 
         $vars['tipos'] = $tipos->get_all();
 
