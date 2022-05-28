@@ -9,8 +9,8 @@ function prePopulateForm(id){
 
             let titulo = document.getElementById("editTitulo");
             let tituloText = pendencias[i].titulo;
-            tituloText = tituloText.replace("&lt;","<")
-            tituloText = tituloText.replace("&gt;",">")
+            //tituloText = tituloText.replace("&lt;","<")
+            //tituloText = tituloText.replace("&gt;",">")
 
             titulo.value = tituloText;
 
