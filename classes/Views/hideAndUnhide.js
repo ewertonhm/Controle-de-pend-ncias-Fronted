@@ -5,5 +5,22 @@ function unHide(id){
 
 function hide(id){
     var element = document.getElementById(id);
-    element.hidden = true;
+    element.hidden = true; 
+    if(document.getElementById("andamentosTable")){
+        removeElement("andamentosTable");
+        createNewTable("andamentosTable");
+    }
+
+}
+
+function removeElement(id) {
+    var elem = document.getElementById(id);
+    return elem.parentNode.removeChild(elem);
+}
+
+function createNewTable(id){
+    let table = document.getElementById("andamentoTableMain");
+    let tbody = document.createElement("tbody");
+    tbody.setAttribute("id", id);
+    table.appendChild(tbody);
 }
