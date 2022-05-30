@@ -19,4 +19,9 @@ class Sort
         usort($pendencias, array($this, 'date_sorting_fim_inicio'));
         return $pendencias;
     }
+    public function sort_by_fim($pendencias)
+    {
+        usort($pendencias, array($this, 'date_sorting_inicio_fim'));
+        return $pendencias;
+    }
 }

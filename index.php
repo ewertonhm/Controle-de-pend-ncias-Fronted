@@ -44,7 +44,12 @@ if (!isset($_SESSION['logado']) or $_SESSION['logado'] != true) {
 
         if (count($raw_pendencias) > 0) {
             // sort
-            $raw_pendencias = $sorting->sort_by_inicio($raw_pendencias);
+
+            if (isset($_GET['concluidos'])) {
+                $raw_pendencias = $sorting->sort_by_fim($raw_pendencias);
+            } else {
+                $raw_pendencias = $sorting->sort_by_inicio($raw_pendencias);
+            }
 
 
             $p = [];
