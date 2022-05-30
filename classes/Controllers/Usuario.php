@@ -6,6 +6,7 @@ class Usuario
 {
     private $api;
     public $token;
+    public $id;
 
     public function __construct()
     {
@@ -26,6 +27,7 @@ class Usuario
         if (is_object($token) && \property_exists($token, "data")) {
             if (\property_exists($token->data, "acess_token")) {
                 $this->token = $token->data->acess_token;
+                $this->id = $token->data->user;
                 return true;
             }
         }

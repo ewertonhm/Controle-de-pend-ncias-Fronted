@@ -1,0 +1,48 @@
+{% extends "base.twig" %}
+
+{% block content %}
+<div class="container-fluid">
+<br>
+  <div class="row">
+
+    <div class="col">
+      <div class="container">
+          <h5 style="color: white;">Alterar minha senha:</h5>
+          {% include 'formPassword.html' %}
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="containe">
+
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="containe">
+
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+<scripts>
+</scripts>
+
+{% endblock %}
+
+{% block modal %}
+
+{% endblock %}
+
+{% block navbar %}
+  {% include 'navbarIndex.html' %}
+{% endblock %}
+
+{% block bottombar %}
+    {{ tipos_page }}
+    {% include 'bottombar.html' %}
+{% endblock %}
