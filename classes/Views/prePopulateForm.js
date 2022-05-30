@@ -8,20 +8,20 @@ function prePopulateForm(id){
             tipo.value = pendencias[i].tipo;
 
             let titulo = document.getElementById("editTitulo");
-            let tituloText = pendencias[i].titulo;
+            let tituloText = htmlDecode(pendencias[i].titulo);
             //tituloText = tituloText.replace("&lt;","<")
             //tituloText = tituloText.replace("&gt;",">")
 
             titulo.value = tituloText;
 
             let descricao = document.getElementById("editDescricao");
-            descricao.value = pendencias[i].descricao;
+            descricao.value = htmlDecode(pendencias[i].descricao);
 
             let inicio = document.getElementById("editInicio");
             inicio.value = convertDateTime(pendencias[i].inicio);
 
             let responsavel = document.getElementById("editResponsavel");
-            responsavel.value = pendencias[i].responsavel;
+            responsavel.value = htmlDecode(pendencias[i].responsavel);
 
             let previsao = document.getElementById("editPrevisao");
             previsao.value = convertDateTime(pendencias[i].previsao);
