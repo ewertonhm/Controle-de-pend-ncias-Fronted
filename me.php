@@ -5,8 +5,8 @@ use Controller\Usuario;
 require 'config.php';
 
 $vars = [
-    'page_name' => 'Gerência de Usuários',
-    'usuarios_page' => 'active'
+    'page_name' => 'Meu usuario',
+    'me_page' => 'active'
 ];
 
 
