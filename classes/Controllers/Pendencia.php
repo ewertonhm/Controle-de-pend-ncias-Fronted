@@ -57,7 +57,7 @@ class Pendencia
             "titulo" => str_replace('&gt;', '>', str_replace('&lt;', '<', $POST['titulo'])),
             "descricao" => $POST['descricao'],
             "inicio" => $POST['inicio'],
-            "responsavel" => $POST['responsavel'],
+            "responsavel" => str_replace('&gt;', '>', str_replace('&lt;', '<', $POST['responsavel'])),
             "previsao" => $POST['previsao'],
             "task" => $POST['task'],
             "incidente" => $POST['incidente'],
