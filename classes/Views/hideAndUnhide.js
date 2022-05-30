@@ -1,4 +1,5 @@
 function unHide(id){
+    timer.pause();
     var element = document.getElementById(id);
     element.hidden = false;
 }
@@ -11,6 +12,8 @@ function hide(id){
         createNewTable("andamentosTable");
     }
 
+    timer.reset();
+    timer.resume();
 }
 
 function removeElement(id) {
