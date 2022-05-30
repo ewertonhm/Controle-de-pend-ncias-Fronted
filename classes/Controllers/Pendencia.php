@@ -54,7 +54,7 @@ class Pendencia
     {
         $data = [
             "tipoPendenciaId" => $POST['tipo'],
-            "titulo" => $POST['titulo'],
+            "titulo" => str_replace('&gt;', '>', str_replace('&lt;', '<', $POST['titulo'])),
             "descricao" => $POST['descricao'],
             "inicio" => $POST['inicio'],
             "responsavel" => $POST['responsavel'],
