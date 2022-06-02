@@ -5,7 +5,7 @@
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => '916bfacb99576e65d274cc73ec4a65a6ec14d47b',
+        'reference' => 'bd6c75586cdd3638f23ea9264d09625bfaa50afc',
         'name' => '__root__',
         'dev' => true,
     ),
@@ -16,7 +16,7 @@
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => '916bfacb99576e65d274cc73ec4a65a6ec14d47b',
+            'reference' => 'bd6c75586cdd3638f23ea9264d09625bfaa50afc',
             'dev_requirement' => false,
         ),
         'filp/whoops' => array(
@@ -44,6 +44,15 @@
             'install_path' => __DIR__ . '/../psr/log',
             'aliases' => array(),
             'reference' => 'd49695b909c3b7628b6289db5479a1c204601f11',
+            'dev_requirement' => false,
+        ),
+        'rmccue/requests' => array(
+            'pretty_version' => 'v2.0.3',
+            'version' => '2.0.3.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../rmccue/requests',
+            'aliases' => array(),
+            'reference' => 'b290dd974051bf1ead51d1947a5a56357e5b80ff',
             'dev_requirement' => false,
         ),
         'symfony/deprecation-contracts' => array(

@@ -12,12 +12,14 @@ class ComposerStaticInit575308c50dffcaaa96e01d56272aad36
         '6e3fae29631ef280660b3cdad06f25a8' => __DIR__ . '/..' . '/symfony/deprecation-contracts/function.php',
         '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
         'a1105708a18b76903365ca1c4aa61b02' => __DIR__ . '/..' . '/symfony/translation/Resources/functions.php',
+        '941748b3c8cae4466c827dfb5ca9602a' => __DIR__ . '/..' . '/rmccue/requests/library/Deprecated.php',
         '667aeda72477189d0494fecd327c3641' => __DIR__ . '/..' . '/symfony/var-dumper/Resources/functions/dump.php',
     );
 
     public static $prefixLengthsPsr4 = array (
         'W' => 
         array (
+            'WpOrg\\Requests\\' => 15,
             'Whoops\\' => 7,
         ),
         'T' => 
@@ -44,6 +46,10 @@ class ComposerStaticInit575308c50dffcaaa96e01d56272aad36
     );
 
     public static $prefixDirsPsr4 = array (
+        'WpOrg\\Requests\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/rmccue/requests/src',
+        ),
         'Whoops\\' => 
         array (
             0 => __DIR__ . '/..' . '/filp/whoops/src/Whoops',
@@ -91,12 +97,14 @@ class ComposerStaticInit575308c50dffcaaa96e01d56272aad36
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
         'Controller\\Andamento' => __DIR__ . '/../..' . '/classes/Controllers/Andamento.php',
         'Controller\\Api' => __DIR__ . '/../..' . '/classes/Controllers/Api.php',
+        'Controller\\Bitrix' => __DIR__ . '/../..' . '/classes/Controllers/Bitrix.php',
         'Controller\\Date' => __DIR__ . '/../..' . '/classes/Controllers/Date.php',
         'Controller\\Pendencia' => __DIR__ . '/../..' . '/classes/Controllers/Pendencia.php',
         'Controller\\Sort' => __DIR__ . '/../..' . '/classes/Controllers/Sort.php',
         'Controller\\TipoPendencia' => __DIR__ . '/../..' . '/classes/Controllers/TipoPendencia.php',
         'Controller\\Usuario' => __DIR__ . '/../..' . '/classes/Controllers/Usuario.php',
         'PhpToken' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/PhpToken.php',
+        'Requests' => __DIR__ . '/..' . '/rmccue/requests/library/Requests.php',
         'Stringable' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Stringable.php',
         'UnhandledMatchError' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/UnhandledMatchError.php',
         'ValueError' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/ValueError.php',
