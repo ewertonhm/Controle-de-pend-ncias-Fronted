@@ -99,10 +99,10 @@ class Pendencia
         $data = ["fim" => Date::convertFromHtmlToJS($hora)];
         $pendencias = $this->api->CallAPI("PATCH", "/pendencias/$id/close", $this->token, $data);
         $pendencia = $this->findOne($id);
-        if ($pendencia->task != null and $pendencia->task != '') {
-            $this->add_comment_task($id, $pendencia);
-            $this->close_task($pendencia->task);
-        }
+        //if ($pendencia->task != null and $pendencia->task != '') {
+        //    $this->add_comment_task($id, $pendencia);
+        //    $this->close_task($pendencia->task);
+        //}
 
         return $pendencias;
     }
