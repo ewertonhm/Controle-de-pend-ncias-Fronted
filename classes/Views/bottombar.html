@@ -8,7 +8,7 @@
     <a class="align-right vl" href="logout.php">Logout</a>
     <a class="align-right vl {% if me_page=='active' %}active {% endif %}" href="me.php">Mudar senha</a>
     <a class="align-right vl {% if tipos_page=='active' %}active {% endif %}" href="tipos.php" >Tipos de Incidente</a>
-    <a class="align-right vl {% if usuarios_page=='active' %}active {% endif %}" href="usuarios.php" >Usuários</a>
+    {% if me.admin %}<a class="align-right vl {% if usuarios_page=='active' %}active {% endif %}" href="usuarios.php" >Usuários</a>{% endif %}
     {% if pages %}
         {% for i in pages-1..0 %}
         <a 

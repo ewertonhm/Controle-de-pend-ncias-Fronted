@@ -12,6 +12,8 @@ if (!isset($_SESSION['logado']) or $_SESSION['logado'] != true) {
     if (!$_SESSION['usuario']->refresh_token()) {
         header('location: logout.php');
     } else {
+        $vars['me'] = $_SESSION['me'];
+
         // instanciate classes
         $pendencias = new \Controller\Pendencia($_SESSION['usuario']->token);
         $andamentos = new Controller\Andamento($_SESSION['usuario']->token);
