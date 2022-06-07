@@ -3,5 +3,5 @@ const charCounter = document.getElementById("characterCounterAdicionarAndamentos
 
 textarea.addEventListener("input", ({ currentTarget: target }) => {
   const currentLength = target.value.length;
-  charCounter.innerText = (`${currentLength}/256`);
+  charCounter.innerText = (`${currentLength}/500`);
 });
