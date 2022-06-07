@@ -1,7 +1,7 @@
 <div class="modal fade modal-dialog modal-dialog-centered modal-fullscreen-sm-down" id="addAndamento"
     aria-labelledby="addAndamentoLabel" aria-hidden="true" style="display: none;">
     <div class="modal-dialog">
-        <form method="post">
+        <form method="post" autocomplete="off">
             <input type="hidden" id="idPendenciaOnAddPendencia" name="idPendencia">
             <div class="modal-content">
                 <div class="modal-header">
@@ -10,9 +10,10 @@
                         onClick="hide('addAndamento')"></button>
                 </div>
                 <div class="modal-body">
-                    <label for="exampleFormControlTextarea1" class="form-label">Andamento</label>
-                    <input type="text" class="form-control" name="andamento" id="exampleFormControlTextarea1"
-                        rows="3" required></input>
+                    <label for="adicionarAndamentoTextArea" class="form-label">Andamento</label>
+                    <textarea type="text" class="form-control" maxlength="256" name="andamento" id="adicionarAndamentoTextArea"
+                        rows="3" required></textarea>
+                    <label id="characterCounterAdicionarAndamentosTextArea" style="padding-top: 5px;">0/256</label>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
