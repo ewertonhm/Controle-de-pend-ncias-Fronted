@@ -10,11 +10,47 @@
     <a class="align-right vl {% if tipos_page=='active' %}active {% endif %}" href="tipos.php" >Tipos de Incidente</a>
     {% if me.admin %}<a class="align-right vl {% if usuarios_page=='active' %}active {% endif %}" href="usuarios.php" >Usuários</a>{% endif %}
     {% if pages %}
-        {% for i in pages-1..0 %}
-        <a 
-            class="align-right {% if i == page %}active{% endif %}" 
-            href="index.php?page={{ i }}{% if concluidos=='active' %}&concluidos=true{% endif %}{% if all=='active' %}&&all=true{% endif %}">{{ i }}
+        {% if pages > page+1 %}
+        <a class="align-right"
+            href="index.php?page={{ page+1 }}{% if concluidos=='active' %}&concluidos=true{% endif %}{% if all=='active' %}&&all=true{% endif %}">>
         </a>
-        {% endfor %}
+        {% endif %}
+
+        {% if pages > page+2 %}
+        <a class="align-right"
+            href="index.php?page={{ page+2 }}{% if concluidos=='active' %}&concluidos=true{% endif %}{% if all=='active' %}&&all=true{% endif %}">{{
+            page+2 }}
+        </a>
+        {% endif %}
+        {% if pages > page+1 %}
+            <a class="align-right"
+                href="index.php?page={{ page+1 }}{% if concluidos=='active' %}&concluidos=true{% endif %}{% if all=='active' %}&&all=true{% endif %}">{{
+                page+1 }}
+            </a>
+        {% endif %}
+        <a class="align-right active"
+            href="index.php?page={{ page }}{% if concluidos=='active' %}&concluidos=true{% endif %}{% if all=='active' %}&&all=true{% endif %}">{{ page }}
+        </a>
+        {% if page != 0 %}
+            {% if page > 1 %}
+                <a class="align-right"
+                    href="index.php?page={{ page-1 }}{% if concluidos=='active' %}&concluidos=true{% endif %}{% if all=='active' %}&&all=true{% endif %}">{{
+                    page-1 }}
+                </a>
+                <a class="align-right"
+                    href="index.php?page={{ page-2 }}{% if concluidos=='active' %}&concluidos=true{% endif %}{% if all=='active' %}&&all=true{% endif %}">{{
+                    page-2 }}
+                </a>
+            {% elseif page > 0 %}
+                <a class="align-right"
+                    href="index.php?page={{ page-1 }}{% if concluidos=='active' %}&concluidos=true{% endif %}{% if all=='active' %}&&all=true{% endif %}">{{
+                    page-1 }}
+                </a>"
+            {% endif %}
+            <a class="align-right"
+                href="index.php?page={{ page-1 }}{% if concluidos=='active' %}&concluidos=true{% endif %}{% if all=='active' %}&&all=true{% endif %}"><
+            </a>
+        {% endif %}
+
     {% endif %}
 </div>
