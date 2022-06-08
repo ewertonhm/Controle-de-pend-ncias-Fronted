@@ -27,6 +27,7 @@ class Pendencia
 
     public function addAndamento($id, $andamento)
     {
+        $andamento = trim(preg_replace('/\s\s+/', ' ', $andamento));
         $data = [
             "andamento" => $andamento,
             "dataAndamento" => Date::jsNow()
