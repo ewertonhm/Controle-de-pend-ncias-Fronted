@@ -2,6 +2,9 @@
 
 {% block content %}
   {% include 'pendenciasTable.html' %}
+  {% if toast %}
+    {% include 'toast.html' %}
+  {% endif %}
 {% endblock %}
 
 {% block scripts %}
@@ -29,6 +32,9 @@
         {% include 'prePopulateForm.js' %}
         {% include 'populateDetailsPendencia.js' %}
         {% include 'modalAdicionarAndamentoCharCounter.js' %}
+        {% if toast %}
+          {% include 'toast.js' %}
+        {% endif %}
     </script>
 {% endblock %}
 
