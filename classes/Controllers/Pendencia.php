@@ -79,7 +79,7 @@ class Pendencia
         $msg_titulo = $tr_open . $td_open . "Titulo:" . $td_close . $td_open . $pendencia->titulo . $td_close . $tr_close;
         $msg_desc = $tr_open . $td_open . "Descrição:" . $td_close . $td_open . $pendencia->descricao . $td_close . $tr_close;
         $res_tec = $tr_open . $td_open . "Responsável técnico:" . $td_close . $td_open . $pendencia->responsavel . $td_close . $tr_close;
-        $msg_abert = $tr_open . $td_open . "Data abertura:" . $td_close . $td_open . $pendencia->created_at . $td_close . $tr_close;
+        $msg_abert = $tr_open . $td_open . "Data abertura:" . $td_close . $td_open . Date::convertFromJsToHumanPluOne($pendencia->created_at) . $td_close . $tr_close;
         $usr_abert = $tr_open . $td_open . "Responsável abertura:" . $td_close . $td_open . $pendencia->userAbertura->nome . ' ' . $pendencia->userAbertura->sobrenome . $td_close . $tr_close;
         $usr_fechamento = $tr_open . $td_open . "Responsável fechamento:" . $td_close . $td_open . $pendencia->userFechamento->nome . ' ' . $pendencia->userFechamento->sobrenome . $td_close . $tr_close;
         $incidente = $tr_open . $td_open . "Incidente:" . $td_close . $td_open . $pendencia->incidente . $td_close . $tr_close;
@@ -99,10 +99,10 @@ class Pendencia
         $data = ["fim" => Date::convertFromHtmlToJS($hora)];
         $pendencias = $this->api->CallAPI("PATCH", "/pendencias/$id/close", $this->token, $data);
         $pendencia = $this->findOne($id);
-        //if ($pendencia->task != null and $pendencia->task != '') {
-        //    $this->add_comment_task($id, $pendencia);
-        //    $this->close_task($pendencia->task);
-        //}
+        if ($pendencia->task != null and $pendencia->task != '') {
+            $this->add_comment_task($id, $pendencia);
+            $this->close_task($pendencia->task);
+        }
 
         return $pendencias;
     }

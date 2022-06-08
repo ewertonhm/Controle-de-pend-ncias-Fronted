@@ -1,21 +1,23 @@
-stages:        
+stages:
   - copy
   - permissions
 
-copy-job: 
-    stage: copy
-    tags:
-        - tio-mon-extension
-    script:
+copy-job:
+  stage: copy
+  only:
+    refs:
+      - php-dev
+  tags:
+    - tio-mon-extension
+  script:
     - echo "Copying the code..."
     - cp -r * /var/www/pendencias/
     - echo "Copy complete."
 
-config-permissions-job:   
-    stage: permissions  
-    tags:
+config-permissions-job:
+  stage: permissions
+  tags:
     - tio-mon-extension
-    script:
+  script:
     - echo "Fixing permissions."
     - echo "Permissions fixed"
-

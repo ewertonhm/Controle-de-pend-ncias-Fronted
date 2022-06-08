@@ -77,7 +77,7 @@ if (!isset($_SESSION['logado']) or $_SESSION['logado'] != true) {
             }
 
             // Add pagination / create array_chunks
-            $pp = array_chunk($p, 20, false);
+            $pp = array_chunk($p, 15, false);
 
             $vars['pages'] = count($pp);
             if (isset($_GET['page'])) {
