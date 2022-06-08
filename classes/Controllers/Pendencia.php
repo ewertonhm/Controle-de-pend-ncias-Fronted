@@ -87,23 +87,24 @@ class Pendencia
 
         $msg_full = $msg_title . $msg_titulo . $msg_desc . $res_tec . $msg_abert . $usr_abert . $usr_fechamento . $incidente . $table_close;
 
-        Bitrix::add_comment($pendencia->task, $msg_full);
+        return Bitrix::add_comment($pendencia->task, $msg_full);
     }
     public function close_task($id)
     {
-        Bitrix::close_taks($id);
+        return Bitrix::close_taks($id);
     }
 
     public function fecharPendencia($id, $hora)
     {
+        $return = [];
         $data = ["fim" => Date::convertFromHtmlToJS($hora)];
-        $pendencias = $this->api->CallAPI("PATCH", "/pendencias/$id/close", $this->token, $data);
+        $this->api->CallAPI("PATCH", "/pendencias/$id/close", $this->token, $data);
         $pendencia = $this->findOne($id);
         if ($pendencia->task != null and $pendencia->task != '') {
-            $this->add_comment_task($id, $pendencia);
-            $this->close_task($pendencia->task);
+            $return['bitrix']['comment'] = $this->add_comment_task($id, $pendencia);
+            $return['bitrix']['close'] = $this->close_task($pendencia->task);
         }
-
-        return $pendencias;
+        $return['pendencia'] = $pendencia;
+        return $return;
     }
 }

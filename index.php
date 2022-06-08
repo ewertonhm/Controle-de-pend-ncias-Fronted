@@ -28,6 +28,10 @@ if (!isset($_SESSION['logado']) or $_SESSION['logado'] != true) {
         } elseif (isset($_POST['fim']) and $_POST['fim'] != '') {
             $result = $pendencias->fecharPendencia($_POST['idPendencia'], $_POST['fim']);
             unset($_POST);
+            if (isset($result['bitrix'])) {
+                $_SESSION['last_bitrix_task_status'] = $result['bitrix'];
+                $_SESSION['last_bitrix_task_status']['task'] = $result['pendencia']->task;
+            }
             header("Location: " . $_SERVER['REQUEST_URI']);
         } elseif (isset($_POST['edit'])) {
             $pendencias->editPendencia($_POST);
@@ -121,7 +125,12 @@ if (!isset($_SESSION['logado']) or $_SESSION['logado'] != true) {
 
         $vars['tipos'] = $tipos->get_all();
 
-        //dump($vars);
+        if (isset($_SESSION['last_bitrix_task_status'])) {
+            if ($_SESSION['last_bitrix_task_status']['comment'] != 200 || $_SESSION['last_bitrix_task_status']['close'] != 200) {
+                $vars['toast']['message'] = $_SESSION['last_bitrix_task_status']['task'];
+                unset($_SESSION['last_bitrix_task_status']);
+            }
+        }
 
         $template = $twig->load('index.twig');
 
